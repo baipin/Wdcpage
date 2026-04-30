@@ -13,4 +13,4 @@ Empty here...
 ### 💻 Internships
 - *2025.9 - 2025.12*, XOOER, Hong Kong.
 
-[github-metrics.svg](https://github.com/baipin/baipin/raw/main/github-metrics.svg)
+![github-metrics.svg](https://github.com/baipin/baipin/raw/main/github-metrics.svg)
