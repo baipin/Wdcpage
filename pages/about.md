@@ -1,14 +1,14 @@
 Hello! Welcome to Wang Dingchao's personal homepage. I am now a student studying Data Science.
 
 
-# 🔥 News
+### 🔥 News
 - *2026.4.30*: &nbsp;🎉🎉 Bought Wangdingchao.com domain.
 
-# 📝 Publications 
+### 📝 Publications 
 Empty here...  
 
-# 📖 Educations
+### 📖 Educations
 - *2023.9 - 2027.6*, Undergaduate at [City University of Hong Kong](https://cityu.edu.hk)
 
-# 💻 Internships
+### 💻 Internships
 - *2025.9 - 2025.12*, XOOER, Hong Kong.
