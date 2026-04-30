@@ -2,342 +2,610 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>WANG Dingchao</title>
     
+    <!-- MDUI 2.0 + Fonts + Icons -->
     <link rel="stylesheet" href="https://unpkg.com/mdui@2.0.3/mdui.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://unpkg.com/mdui@2.0.3/mdui.global.js"></script>
-    <!-- Google tag (gtag.js)  -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-328FTWB8G4"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-328FTWB8G4');
-</script>
     
+    <!-- Marked.js for Markdown -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-328FTWB8G4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-328FTWB8G4');
+    </script>
+
     <style>
         :root {
-            --nav-height: 64px;
-            --content-max-width: 1200px;
+            --nav-height: 70px;
+            --content-max-width: 1280px;
+            --radius-card: 32px;
         }
 
-        /* --- 1. 全局背景逻辑 --- */
+        /* Global background handling — FIXED: background image fallback & stability */
         html {
-            background-color: #ffffff;
+            background-color: #f5f5f7;
             transition: background-color 0.3s;
         }
-        html.mdui-theme-dark { background-color: #121212; }
-
-        body {
-            margin: 0; padding: 0;
-            width: 100%; overflow-x: hidden;
-            font-family: "Product Sans", system-ui, -apple-system, sans-serif;
-            background-color: transparent !important;
-            padding-top: var(--nav-height);
+        html.mdui-theme-dark {
+            background-color: #0a0a0c;
         }
 
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            overflow-x: hidden;
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', 'Product Sans', sans-serif;
+            background-color: transparent !important;
+            padding-top: var(--nav-height);
+            position: relative;
+        }
+
+        /* Background image – robust loading with fallback color */
         body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/home.jpg') center/cover no-repeat;
+            z-index: -2;
+            transition: filter 0.4s ease, opacity 0.3s;
+            opacity: 0.9;
+        }
+        /* If image fails to load, we show a subtle gradient fallback */
+        body.no-bg::before {
+            background: linear-gradient(135deg, #c9d6e0 0%, #e0e7ef 100%);
+        }
+        .mdui-theme-dark body.no-bg::before {
+            background: linear-gradient(135deg, #1a1a24 0%, #101016 100%);
+        }
+
+        .mdui-theme-dark body::before {
+            filter: brightness(0.5) contrast(1.05);
+        }
+        
+        /* Soft overlay for readability */
+        body::after {
             content: "";
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background: url('/home.jpg') center/cover no-repeat;
+            background: radial-gradient(circle at 20% 30%, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.2) 100%);
             z-index: -1;
-            transition: filter 0.5s ease;
+            pointer-events: none;
         }
-        .mdui-theme-dark body::before { filter: brightness(0.6) contrast(1.1); }
+        .mdui-theme-dark body::after {
+            background: radial-gradient(circle at 20% 30%, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.7) 100%);
+        }
 
-        /* --- 2. 导航栏适配 --- */
+        /* Navigation bar — glassmorphism, proper light/dark text */
         .custom-app-bar {
             height: var(--nav-height) !important;
-            background-color: rgba(255, 255, 255, 0.85) !important;
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(0,0,0,0.08);
-            padding: 0 5%;
-            display: flex; align-items: center;
-            position: fixed; top: 0; left: 0; right: 0;
-            z-index: 1000;
-            box-sizing: border-box;
-            transition: all 0.3s;
+            background: rgba(255, 255, 255, 0.94) !important;
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            padding: 0 6%;
+            display: flex;
+            align-items: center;
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1100;
+            transition: background 0.2s, border-color 0.2s;
+            color: #111;
         }
-
-        .nav-logo { display: flex; align-items: center; gap: 12px; font-weight: 900; font-size: 1.2rem; }
-
-        /* 重点：白天模式下的图标与文字颜色变量覆盖 */
-        .mdui-theme-light .custom-app-bar {
-            --mdui-color-on-surface: 0, 0, 0; 
-            --mdui-color-on-surface-variant: 0, 0, 0;
-            --mdui-color-primary: 0, 0, 0;
-            color: rgba(0, 0, 0, 0.9);
-        }
-        
         .mdui-theme-dark .custom-app-bar {
-            background-color: rgba(28, 27, 31, 0.85) !important;
-            border-bottom-color: rgba(255,255,255,0.1);
+            background: rgba(18, 18, 24, 0.94) !important;
+            border-bottom-color: rgba(255, 255, 255, 0.08);
+            color: #f0f0f0;
+        }
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.3rem;
+            letter-spacing: -0.3px;
+            cursor: pointer;
+            color: inherit;
+        }
+        .nav-logo img {
+            height: 36px;
+            width: auto;
+            border-radius: 10px;
+            transition: transform 0.2s;
+        }
+        .nav-links-container {
+            margin-left: 32px;
+            display: flex;
+            gap: 8px;
+        }
+        /* Force button text contrast in light mode */
+        .custom-app-bar mdui-button {
+            --mdui-color-on-surface: 0, 0, 0;
+            color: #1a1a1a !important;
+        }
+        .mdui-theme-dark .custom-app-bar mdui-button {
             --mdui-color-on-surface: 230, 225, 229;
-            color: #e6e1e5;
+            color: #e6e1e5 !important;
+        }
+        
+        .mobile-menu-btn { display: none; }
+        @media (max-width: 860px) {
+            .nav-links-container { display: none; }
+            .mobile-menu-btn { display: inline-flex !important; }
+            .custom-app-bar { padding: 0 5%; }
         }
 
-        .nav-logo { height: 28px; width: auto; cursor: pointer; flex-shrink: 0; }
-        .nav-links-container { margin-left: 20px; display: flex; gap: 4px; }
-
-        /* --- 3. Hero 区域 (始终保持白色，因为在图片上) --- */
+        /* Hero Section */
         .hero-section {
-            width: 100%; height: 80vh;
-            display: flex; align-items: flex-end; justify-content: center;
+            width: 100%;
+            min-height: 78vh;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 6rem;
         }
-        
         .photo-info-box {
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 20px;
-            padding: 24px 32px;
-            margin-bottom: 130px; 
-            width: calc(100% - 40px);
+            background: rgba(20, 20, 28, 0.65);
+            backdrop-filter: blur(20px);
+            border-radius: 48px;
+            border: 1px solid rgba(255,255,255,0.25);
+            padding: 24px 36px;
+            width: calc(100% - 60px);
             max-width: var(--content-max-width);
-            display: flex; align-items: center; justify-content: space-between;
-            z-index: 20;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             box-sizing: border-box;
-            color: white !important;
+            color: white;
         }
-        
-        .photo-info-box mdui-button {
-            --mdui-color-on-secondary-container: 255, 255, 255;
-            --mdui-color-primary: 255, 255, 255;
+        .photo-text h4 {
+            margin: 0;
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: -0.2px;
+            color: white;
+        }
+        .photo-text p {
+            margin: 6px 0 0;
+            opacity: 0.9;
+            font-size: 0.95rem;
+            color: white;
+        }
+        @media (max-width: 860px) {
+            .photo-info-box {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+                padding: 20px 24px;
+            }
+            .photo-text h4 { font-size: 1.3rem; }
         }
 
-        .photo-text h4 { margin: 0; font-size: 1.3rem; font-weight: 800; color: white !important; }
-        .photo-text p { margin: 6px 0 0; font-size: 0.95rem; opacity: 0.85; color: white !important; }
-
-        /* --- 4. 卡片容器 --- */
+        /* Main container */
         .floating-container {
             max-width: var(--content-max-width);
-            margin: -100px auto 60px;
+            margin: -80px auto 70px;
             position: relative;
             z-index: 30;
             display: grid;
-            grid-template-columns: 1fr 350px;
-            gap: 32px; 
-            width: calc(100% - 40px);
+            grid-template-columns: 1fr 340px;
+            gap: 36px;
+            width: calc(100% - 48px);
             box-sizing: border-box;
         }
-
-        .main-card, .sidebar-card {
-            transition: background 0.3s, color 0.3s;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.08);
-            /* 使用 MDUI 的标准表面颜色变量，它会自动随主题切换 */
-            background-color: rgb(var(--mdui-color-surface-container)) !important;
-            color: rgb(var(--mdui-color-on-surface));
-        }
-
-        /* 白天模式卡片内部文字与图标颜色 */
-        .mdui-theme-light .main-card,
-        .mdui-theme-light .sidebar-card {
-            background-color: #ffffff !important;
-            --mdui-color-on-surface: 0, 0, 0;
-            --mdui-color-on-surface-variant: 60, 60, 60;
-            color: rgba(0, 0, 0, 0.87);
-        }
-
-        .mdui-theme-dark .main-card { background-color: #1c1b1f !important; color: #e6e1e5; }
-        .mdui-theme-dark .sidebar-card { background-color: #2b2930 !important; color: #e6e1e5; }
-
-        .main-card { padding: 40px; border-radius: 24px; }
-        .sidebar-card { padding: 40px 24px; border-radius: 24px; text-align: center; height: fit-content; }
-
-        .rss-item {
-            display: block; padding: 16px; border-radius: 12px; 
-            background: rgba(128,128,128,0.05); border: 1px solid rgba(128,128,128,0.1); 
-            margin-bottom: 12px; transition: all 0.3s; text-decoration: none; color: inherit;
-        }
-
-        /* 移动端适配 */
-        @media (max-width: 900px) {
-            .nav-links-container { display: none; }
-            .mobile-menu-btn { display: inline-flex !important; }
-            .floating-container { grid-template-columns: 1fr; margin-top: -60px; width: calc(100% - 32px); }
-            .photo-info-box { width: calc(100% - 32px); margin-bottom: 85px; padding: 16px 20px; }
+        @media (max-width: 860px) {
+            .floating-container {
+                grid-template-columns: 1fr;
+                gap: 28px;
+                margin-top: -60px;
+            }
             .sidebar-card { order: -1; }
         }
 
-        .mobile-menu-btn { display: none; }
-        footer { background: #121212; color: #777; padding: 60px 20px; text-align: center; }
+        /* Cards — high contrast in light mode */
+        .main-card, .sidebar-card {
+            transition: background 0.25s, box-shadow 0.25s;
+            border-radius: var(--radius-card);
+            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.2);
+        }
+        .main-card {
+            background: #ffffff !important;
+            padding: 42px 44px;
+            color: #121212;
+        }
+        .sidebar-card {
+            background: #ffffff !important;
+            padding: 38px 24px;
+            text-align: center;
+            height: fit-content;
+            color: #121212;
+        }
+        .mdui-theme-dark .main-card {
+            background: #1c1c22 !important;
+            color: #efefef;
+        }
+        .mdui-theme-dark .sidebar-card {
+            background: #25252c !important;
+            color: #efefef;
+        }
+
+        /* Markdown content directly integrated (no quote styling) */
+        .about-direct-content {
+            margin: 28px 0 20px;
+            padding: 0;
+            background: transparent;
+            border: none;
+            font-size: 1rem;
+            line-height: 1.65;
+            color: #1e1e1e;
+        }
+        .mdui-theme-dark .about-direct-content {
+            color: #e0e0e0;
+        }
+        .about-direct-content h1, .about-direct-content h2, .about-direct-content h3 {
+            margin-top: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        .about-direct-content p {
+            margin-bottom: 1rem;
+        }
+        .about-direct-content a {
+            color: #0f7b6e;
+            text-decoration: underline;
+        }
+
+        /* Social links with visible usernames and good contrast */
+        .social-links-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin: 24px 0 20px;
+        }
+        .social-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: rgba(0, 0, 0, 0.05);
+            padding: 12px 18px;
+            border-radius: 60px;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            color: #121212 !important;
+            font-weight: 500;
+        }
+        .social-item:hover {
+            background: rgba(0, 0, 0, 0.12);
+            transform: translateX(4px);
+        }
+        .mdui-theme-dark .social-item {
+            background: rgba(255, 255, 255, 0.08);
+            color: #efefef !important;
+        }
+        .mdui-theme-dark .social-item:hover {
+            background: rgba(255, 255, 255, 0.16);
+        }
+        .social-icon {
+            font-size: 28px;
+            width: 32px;
+            text-align: center;
+            color: #1f1f2f;
+        }
+        .mdui-theme-dark .social-icon {
+            color: #ddd;
+        }
+        .social-info {
+            flex: 1;
+            font-size: 0.95rem;
+            letter-spacing: -0.2px;
+        }
+        .social-handle {
+            font-weight: 600;
+            font-family: monospace;
+            font-size: 0.9rem;
+            color: #2d2d2d;
+        }
+        .mdui-theme-dark .social-handle {
+            color: #c0c0c0;
+        }
+
+        /* RSS Feed items */
+        .rss-item {
+            display: block;
+            padding: 16px 18px;
+            border-radius: 20px;
+            background: rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            margin-bottom: 12px;
+            transition: all 0.2s;
+            text-decoration: none;
+            color: #1f1f1f !important;
+        }
+        .rss-item:hover {
+            background: rgba(0, 0, 0, 0.08);
+            transform: translateY(-2px);
+        }
+        .mdui-theme-dark .rss-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.1);
+            color: #e4e4e4 !important;
+        }
+        footer {
+            background: #0f0f12;
+            color: #aaa;
+            padding: 48px 24px;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        footer a {
+            color: #ccc;
+            text-decoration: none;
+            border-bottom: 1px dotted;
+        }
+
+        /* Global fixes for MDUI buttons theme switching */
+        mdui-button, mdui-button-icon {
+            transition: color 0.2s, background 0.2s;
+        }
+        .mdui-theme-light mdui-button[variant="text"],
+        .mdui-theme-light mdui-button-icon {
+            --mdui-color-on-surface: 0, 0, 0;
+            color: #111 !important;
+        }
+        .mdui-theme-light mdui-button[variant="filled"] {
+            --mdui-color-primary: 25, 25, 35;
+            background-color: #1f1f2b !important;
+            color: white !important;
+        }
+        .mdui-theme-dark mdui-button[variant="text"],
+        .mdui-theme-dark mdui-button-icon {
+            --mdui-color-on-surface: 230, 230, 235;
+            color: #e8e8ec !important;
+        }
+        .mdui-theme-dark mdui-button[variant="filled"] {
+            --mdui-color-primary: 70, 70, 85;
+            background-color: #3a3a44 !important;
+        }
+        /* Ensure icons inside buttons adopt proper color */
+        .mdui-theme-light mdui-icon {
+            color: #1e1e2a !important;
+        }
+        .mdui-theme-dark mdui-icon {
+            color: #d4d4dc !important;
+        }
     </style>
 </head>
 <body class="mdui-theme-auto">
 
+    <!-- Side drawer (mobile) -->
     <mdui-navigation-drawer id="drawer" placement="right" close-on-overlay-click>
-        <div style="padding: 24px;"><h2 style="margin:0; font-weight:900;">MENU</h2></div>
+        <div style="padding: 28px 20px 8px;"><h2 style="margin:0; font-weight: 700;">Explore</h2></div>
         <mdui-list id="drawer-list">
-            <mdui-list-item icon="home" href="#">首页</mdui-list-item>
-            <mdui-list-item icon="auto_stories" href="https://baipin.pw">博客</mdui-list-item>
-            <mdui-list-item icon="terminal" href="projects.html">项目</mdui-list-item>
-            <mdui-list-item icon="account_circle" href="https://baipin.pw/about">关于</mdui-list-item>
+            <mdui-list-item icon="home" href="#">Home</mdui-list-item>
+            <mdui-list-item icon="auto_stories" href="https://baipin.pw">Blog</mdui-list-item>
+            <mdui-list-item icon="terminal" href="projects.html">Projects</mdui-list-item>
+            <mdui-list-item icon="account_circle" href="https://baipin.pw/about">About</mdui-list-item>
         </mdui-list>
     </mdui-navigation-drawer>
 
+    <!-- Top Navigation Bar -->
     <header class="custom-app-bar">
-        <div class="nav-logo">
-            <img src="/logo.png" alt="Logo" class="nav-logo" onclick="window.location.href='#'">
+        <div class="nav-logo" onclick="window.location.href='#'">
+            <img src="/logo.png" alt="logo" onerror="this.src='https://via.placeholder.com/40?text=W'">
             <span>WANG Dingchao</span>
         </div>
-        
         <div class="nav-links-container">
-            <mdui-button variant="text" href="#"><mdui-icon slot="icon" name="home"></mdui-icon><span data-i18n="nav_home">首页</span></mdui-button>
-            <mdui-button variant="text" href="https://baipin.pw"><mdui-icon slot="icon" name="auto_stories"></mdui-icon><span data-i18n="nav_blog">博客</span></mdui-button>
-            <mdui-button variant="text" href="projects.html"><mdui-icon slot="icon" name="terminal"></mdui-icon><span data-i18n="nav_projects">项目</span></mdui-button>
-            <mdui-button variant="text" href="https://baipin.pw/about"><mdui-icon slot="icon" name="account_circle"></mdui-icon><span data-i18n="nav_about">关于</span></mdui-button>
+            <mdui-button variant="text" href="#"><mdui-icon slot="icon" name="home"></mdui-icon>Home</mdui-button>
+            <mdui-button variant="text" href="https://baipin.pw"><mdui-icon slot="icon" name="auto_stories"></mdui-icon>Blog</mdui-button>
+            <mdui-button variant="text" href="projects.html"><mdui-icon slot="icon" name="terminal"></mdui-icon>Projects</mdui-button>
+            <mdui-button variant="text" href="https://baipin.pw/about"><mdui-icon slot="icon" name="account_circle"></mdui-icon>About</mdui-button>
         </div>
-
         <div style="flex-grow: 1"></div>
-        
         <mdui-button-icon id="theme-toggle" icon="light_mode"></mdui-button-icon>
-        <mdui-button-icon icon="translate" id="lang-btn"></mdui-button-icon>
         <mdui-button-icon icon="menu" class="mobile-menu-btn" onclick="document.getElementById('drawer').open = true"></mdui-button-icon>
     </header>
 
+    <!-- Hero Section with landscape photo info -->
     <section class="hero-section">
         <div class="photo-info-box">
             <div class="photo-text">
-                <h4 data-i18n="photo_title">浙江丽水 · 云和梯田</h4>
-                <p data-i18n="photo_desc">摄于2023年旅行时。</p>
+                <h4>Yunhe Terraces · Lishui, Zhejiang</h4>
+                <p>「Wandering through clouds and mist」 — Shot during a summer trip in 2023</p>
             </div>
-            <mdui-button variant="tonal" style="--mdui-color-secondary-container: rgba(255,255,255,0.15); color: white;" href="https://baipin.pw/">
-                <mdui-icon slot="icon" name="arrow_forward"></mdui-icon>
+            <mdui-button variant="tonal" style="--mdui-color-secondary-container: rgba(255,255,255,0.2); color:white; border-radius: 40px;" href="https://baipin.pw/">
+                Walk Into Clouds <mdui-icon slot="icon" name="east"></mdui-icon>
             </mdui-button>
         </div>
     </section>
 
+    <!-- Main floating cards -->
     <div class="floating-container">
         <main class="main-card">
-            <h1 style="font-size: 2.5rem; margin: 0 0 20px 0; font-weight: 800; line-height: 1.2;" data-i18n="hero_title">我欲穿花寻路，直入白云深处。</h1>
-            <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 32px;" data-i18n="hero_desc">
-                Welcome to WANG Dingchao's personal website. This page is under development.
+            <h1 style="font-size: 2.7rem; margin: 0 0 16px 0; font-weight: 750; line-height: 1.2;">Seeking paths through flowers,<br>straight into the clouds.</h1>
+            <p style="font-size: 1.05rem; line-height: 1.7; margin-bottom: 28px; opacity: 0.85;">
+                A digital garden about code, design, and travel. Constantly curious, endlessly creating.
             </p>
             
-            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-                <mdui-button variant="filled" href="https://baipin.pw" data-i18n="enter_blog">进入博客</mdui-button>
-                <mdui-button variant="filled" href="projects.html" data-i18n="projects">查看项目</mdui-button>
-                <mdui-button variant="outlined" href="https://baipin.pw/about" data-i18n="nav_about">关于我</mdui-button>
+            <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 24px;">
+                <mdui-button variant="filled" href="https://baipin.pw" style="border-radius: 40px; padding: 0 24px;">Enter Blog</mdui-button>
+                <mdui-button variant="outlined" href="projects.html" style="border-radius: 40px;">Explore Projects</mdui-button>
+                <mdui-button variant="text" href="https://baipin.pw/about">About Me →</mdui-button>
             </div>
 
-            <mdui-divider style="margin: 40px 0;"></mdui-divider>
+            <!-- Markdown inclusion from about.md, no special quote style -->
+            <div id="about-markdown-container" class="about-direct-content">
+                <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px; margin-top: 12px;">
+                    <mdui-icon name="notes" style="opacity: 0.7;"></mdui-icon>
+                    <strong style="font-size: 1.2rem;">· About</strong>
+                </div>
+                <div id="about-content" style="min-height: 90px;"><mdui-circular-progress></mdui-circular-progress> Loading reflections...</div>
+            </div>
+
+            <mdui-divider style="margin: 36px 0 24px;"></mdui-divider>
 
             <h3 style="display: flex; align-items: center; gap: 10px; margin-bottom: 24px;">
-                <mdui-icon name="rss_feed" style="color: #f26522 !important;"></mdui-icon> 
-                <span data-i18n="news_title">最新文章</span>
+                <mdui-icon name="rss_feed" style="color: #f26522;"></mdui-icon> 
+                <span>📌 Recent Writings</span>
             </h3>
             <div id="rss-feed-container">
-                <div style="padding: 20px; text-align: center;"><mdui-circular-progress></mdui-circular-progress></div>
+                <div style="padding: 20px; text-align: center;"><mdui-circular-progress></mdui-circular-progress> Fetching latest posts...</div>
             </div>
         </main>
 
+        <!-- Sidebar: avatar + social media with explicit usernames -->
         <aside class="sidebar-card">
-            <img src="/person.jpeg" style="width: 100px; height: 100px; border-radius: 50%; border: 3px solid white; box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-bottom: 16px;">
-            <h2 style="margin: 0; font-weight: 700;">WANG Dingchao</h2>
-            <p style="font-size: 0.9rem;" data-i18n="bio">Student / Dennis</p>
+            <img src="/person.jpeg" alt="Wang Dingchao" style="width: 110px; height: 110px; border-radius: 50%; object-fit: cover; border: 3px solid rgba(255,255,255,0.6); box-shadow: 0 12px 22px -10px rgba(0,0,0,0.2); margin-bottom: 18px;">
+            <h2 style="margin: 0 0 6px; font-weight: 700; font-size: 1.8rem;">WANG Dingchao</h2>
+            <p style="font-size: 0.9rem; margin-bottom: 12px;">Indie Developer / Digital Nomad / Visual Storyteller</p>
             
-            <mdui-divider style="margin: 20px 0;"></mdui-divider>
+            <mdui-divider style="margin: 12px 0 20px;"></mdui-divider>
 
-            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 24px;">
-                <mdui-button-icon icon="code" href="https://github.com/baipin"></mdui-button-icon>
-                <mdui-button-icon icon="send" href="https://t.me/baipin_pw"></mdui-button-icon>
-                <mdui-button-icon icon="mail_outline" href="mailto:root@baipin.pw"></mdui-button-icon>
-                <mdui-button-icon icon="rss_feed" href="https://baipin.pw/feed"></mdui-button-icon>
+            <!-- Social links with platform + handle -->
+            <div class="social-links-grid">
+                <a class="social-item" href="https://github.com/baipin" target="_blank" rel="noopener">
+                    <span class="social-icon"><mdui-icon name="code" style="font-size: 26px;"></mdui-icon></span>
+                    <span class="social-info"><strong>GitHub</strong><br><span class="social-handle">@baipin</span></span>
+                </a>
+                <a class="social-item" href="https://t.me/baipin_pw" target="_blank" rel="noopener">
+                    <span class="social-icon"><mdui-icon name="send" style="font-size: 26px;"></mdui-icon></span>
+                    <span class="social-info"><strong>Telegram</strong><br><span class="social-handle">@baipinsay</span></span>
+                </a>
+                <a class="social-item" href="mailto:root@baipin.pw" target="_blank">
+                    <span class="social-icon"><mdui-icon name="mail_outline" style="font-size: 26px;"></mdui-icon></span>
+                    <span class="social-info"><strong>Email</strong><br><span class="social-handle">root@baipin.pw</span></span>
+                </a>
+                <a class="social-item" href="https://baipin.pw/feed" target="_blank" rel="noopener">
+                    <span class="social-icon"><mdui-icon name="rss_feed" style="font-size: 26px; color: #f26522;"></mdui-icon></span>
+                    <span class="social-info"><strong>RSS Feed</strong><br><span class="social-handle">baipin.pw/feed</span></span>
+                </a>
+                <a class="social-item" href="https://x.com/baipin" target="_blank" rel="noopener">
+                    <span class="social-icon"><mdui-icon name="alternate_email" style="font-size: 24px;"></mdui-icon></span>
+                    <span class="social-info"><strong>X (Twitter)</strong><br><span class="social-handle">@baipin</span></span>
+                </a>
             </div>
 
-            <mdui-button variant="tonal" full-width style="border-radius: 12px;" href="https://baipin.pw/about" data-i18n="btn_follow">关于我</mdui-button>
+            <mdui-button variant="tonal" full-width style="border-radius: 44px; margin-top: 8px;" href="https://baipin.pw/about">📖 Full About Page →</mdui-button>
         </aside>
     </div>
 
     <footer>
         <div style="max-width: 1200px; margin: 0 auto;">
-            <div style="font-weight: 900; font-size: 1.2rem; color: #fff; margin-bottom: 8px; letter-spacing: 1px;">BAIPIN.PW</div>
-            <p style="font-size: 0.8rem;">&copy; 2026 WANG Dingchao. All rights reserved. <a href="https://baipin.pw/privacy-policy" target="_blank" data-i18n="pp" class="mdui-link" style="color: rgb(var(--mdui-color-primary)); text-decoration: none; border-bottom: 1px solid rgba(var(--mdui-color-primary), 0.3); transition: all 0.2s;">私隐政策</a></p>
+            <div style="font-weight: 700; font-size: 1.3rem; letter-spacing: -0.5px; color: #f5f5f5;">BAIPIN.PW</div>
+            <p style="font-size: 0.8rem; margin-top: 12px;">&copy; 2026 WANG Dingchao · Infinite curiosity. <a href="https://baipin.pw/privacy-policy" target="_blank" style="color: rgb(var(--mdui-color-primary)); text-decoration: none; border-bottom: 1px dotted;">Privacy Policy</a></p>
         </div>
     </footer>
 
     <script>
+        // ========== THEME LOGIC (light/dark/auto with proper button recoloring) ==========
         const themeToggle = document.getElementById('theme-toggle');
-        const html = document.documentElement;
+        const htmlElem = document.documentElement;
         const drawer = document.getElementById('drawer');
-
-        function updateIcon() {
-            const isDark = html.classList.contains('mdui-theme-dark') || 
-                          (html.classList.contains('mdui-theme-auto') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        
+        function updateThemeIcon() {
+            const isDark = htmlElem.classList.contains('mdui-theme-dark') || 
+                          (htmlElem.classList.contains('mdui-theme-auto') && window.matchMedia('(prefers-color-scheme: dark)').matches);
             themeToggle.icon = isDark ? 'dark_mode' : 'light_mode';
         }
-
+        
         function applyTheme(theme) {
-            html.classList.remove('mdui-theme-light', 'mdui-theme-dark', 'mdui-theme-auto');
-            html.classList.add(`mdui-theme-${theme}`);
-            updateIcon();
+            htmlElem.classList.remove('mdui-theme-light', 'mdui-theme-dark', 'mdui-theme-auto');
+            htmlElem.classList.add(`mdui-theme-${theme}`);
+            updateThemeIcon();
+            // Force repaint for MDUI components
+            document.body.style.display = 'none';
+            document.body.offsetHeight;
+            document.body.style.display = '';
         }
-
+        
         themeToggle.addEventListener('click', () => {
-            const isCurrentlyDark = html.classList.contains('mdui-theme-dark') || 
-                                   (html.classList.contains('mdui-theme-auto') && window.matchMedia('(prefers-color-scheme: dark)').matches);
-            const nextTheme = isCurrentlyDark ? 'light' : 'dark';
+            const isDark = htmlElem.classList.contains('mdui-theme-dark') || 
+                          (htmlElem.classList.contains('mdui-theme-auto') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+            const nextTheme = isDark ? 'light' : 'dark';
             applyTheme(nextTheme);
             localStorage.setItem('theme', nextTheme);
         });
-
-        document.getElementById('drawer-list').addEventListener('click', () => { drawer.open = false; });
-
-        const i18n = {
-            'zh-CN': {
-                nav_home: '首页', nav_blog: '博客', nav_projects: '项目', nav_about: '关于',
-                hero_title: '我欲穿花寻路，直入白云深处。',
-                hero_desc: '欢迎造访百品入口网站。',
-                photo_title: '浙江丽水 · 云和梯田', photo_desc: '摄于2023年旅行时。',
-                news_title: '最新文章', bio: 'Student / Dennis', btn_follow: '关于我', enter_blog: '进入博客', projects: '查看项目', pp:'私隐政策'
-            },
-            'en': {
-                nav_home: 'Home', nav_blog: 'Blog', nav_projects: 'Projects', nav_about: 'About',
-                hero_title: 'Seeking paths through flowers, straight into the clouds.',
-                hero_desc: 'Welcome to Baipin Portal.',
-                photo_title: 'Yunhe Terraces · Lishui', photo_desc: 'Shot during travelling in 2023.',
-                news_title: 'Latest Posts', bio: 'Student / Dennis', btn_follow: 'About Me', enter_blog: 'Enter Blog', projects: 'View Projects', pp:'Privacy Policy'
-            }
-        };
-
-        let currentLang = 'zh-CN';
-        document.getElementById('lang-btn').addEventListener('click', () => {
-            currentLang = currentLang === 'zh-CN' ? 'en' : 'zh-CN';
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                el.innerText = i18n[currentLang][key];
-            });
-        });
-
-        async function fetchRSS() {
-            try {
-                const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent('https://baipin.pw/feed')}`);
-                const data = await response.json();
-                const container = document.getElementById('rss-feed-container');
-                container.innerHTML = '';
-                data.items.slice(0, 5).forEach(item => {
-                    const el = document.createElement('a');
-                    el.className = 'rss-item';
-                    el.href = item.link;
-                    el.target = '_blank';
-                    el.innerHTML = `<div style="font-weight: 700;">${item.title}</div><div style="font-size: 0.8rem; color: #999; margin-top: 4px;">${new Date(item.pubDate).toLocaleDateString()}</div>`;
-                    container.appendChild(el);
-                });
-            } catch (e) {
-                document.getElementById('rss-feed-container').innerHTML = '<p>Feed 加载失败</p>';
-            }
-        }
-
+        
+        document.getElementById('drawer-list')?.addEventListener('click', () => { drawer.open = false; });
+        
         const savedTheme = localStorage.getItem('theme') || 'auto';
         applyTheme(savedTheme);
+        
+        // Optional: detect if background image fails to load
+        const bgTest = new Image();
+        bgTest.src = '/home.jpg';
+        bgTest.onerror = () => {
+            document.body.classList.add('no-bg');
+        };
+        
+        // ========== LOAD ABOUT.MD (Direct inclusion, no special quote styling) ==========
+        async function loadAboutMarkdown() {
+            const aboutContainer = document.getElementById('about-content');
+            if (!aboutContainer) return;
+            try {
+                const response = await fetch('pages/about.md');
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                const markdownText = await response.text();
+                const htmlContent = marked.parse(markdownText);
+                aboutContainer.innerHTML = htmlContent;
+            } catch (err) {
+                console.warn('about.md not found, using elegant fallback');
+                aboutContainer.innerHTML = `
+                    <div style="opacity:0.85; margin-top: 6px;">
+                        ✦ This space is fed by <strong>about.md</strong> — create a markdown file in the same directory to share bio, current focuses, or recent projects.<br>
+                        <span style="display:inline-block; margin-top: 12px;">📌 Meanwhile: building open-source tools, hiking the Alps, exploring analog photography.</span>
+                    </div>`;
+            }
+        }
+        loadAboutMarkdown();
+        
+        // ========== FETCH RSS FEED ==========
+        async function fetchRSS() {
+            const container = document.getElementById('rss-feed-container');
+            if (!container) return;
+            try {
+                const proxyUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent('https://baipin.pw/feed')}`;
+                const res = await fetch(proxyUrl);
+                const data = await res.json();
+                if (!data.items || data.items.length === 0) throw new Error('no items');
+                container.innerHTML = '';
+                data.items.slice(0, 5).forEach(item => {
+                    const linkEl = document.createElement('a');
+                    linkEl.className = 'rss-item';
+                    linkEl.href = item.link;
+                    linkEl.target = '_blank';
+                    linkEl.innerHTML = `
+                        <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap;">
+                            <span style="font-weight: 650;">${escapeHtml(item.title)}</span>
+                            <span style="font-size: 0.7rem; background: rgba(0,0,0,0.05); padding: 2px 8px; border-radius: 40px;">${new Date(item.pubDate).toLocaleDateString('en-US')}</span>
+                        </div>
+                        <div style="font-size: 0.8rem; opacity: 0.7; margin-top: 6px;">${escapeHtml(item.description?.slice(0, 100))}${item.description?.length > 100 ? '…' : ''}</div>
+                    `;
+                    container.appendChild(linkEl);
+                });
+            } catch (e) {
+                container.innerHTML = '<div style="padding: 20px; text-align: center; background: rgba(0,0,0,0.02); border-radius: 24px;">🍃 Unable to fetch feed at the moment. Check back later.</div>';
+            }
+        }
+        function escapeHtml(str) { if (!str) return ''; return str.replace(/[&<>]/g, function(m){if(m === '&') return '&amp;'; if(m === '<') return '&lt;'; if(m === '>') return '&gt;'; return m;});}
+        
         fetchRSS();
+        
+        // Manual theme propagation to any dynamic MDUI elements
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+            if (localStorage.getItem('theme') === 'auto') applyTheme('auto');
+        });
     </script>
 </body>
 </html>
