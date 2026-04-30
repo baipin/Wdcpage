@@ -1,4 +1,4 @@
-Hello! Welcome to Wang Dingchao's personal homepage. I am now a undergraduate student studying Data Science. Currently, I am also doing some research on Artificial Intelligence and Large Language Model at a basic stage. I also run a personal blog and some small services, such as online web radio and navigation homepage. You can try  them through project page on this website. Some Cities: Skylines modules are also published by me, and you can find them by searching `baipin` on Paradox Mods.
+Hello! Welcome to Wang Dingchao's personal homepage. I am now a undergraduate student studying Data Science. I am doing some research on Artificial Intelligence and Large Language Model at a basic stage currently. I also run a personal blog and some small services, such as online web radio and navigation homepage. You can try  them through project page on this website. Some Cities: Skylines modules are also published by me, and you can find them by searching `baipin` on Paradox Mods.
 
 Three domains are owned by me now. Here are some interesting stories about them.
 - baipin.pw: The oldest domain owned by me, which was created when I was in the last grade of my primary school.
