@@ -1,4 +1,4 @@
-Hello! Welcome to Wang Dingchao's personal homepage. I am now a student studying Data Science.
+Hello! Welcome to Wang Dingchao's personal homepage. I am now a undergraduate student studying Data Science.
 
 
 ### 🔥 News
@@ -12,3 +12,5 @@ Empty here...
 
 ### 💻 Internships
 - *2025.9 - 2025.12*, XOOER, Hong Kong.
+
+[github-metrics.svg](https://github.com/baipin/baipin/raw/main/github-metrics.svg)
