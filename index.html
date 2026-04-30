@@ -192,6 +192,30 @@
             .photo-text h4 { font-size: 1.3rem; }
         }
 
+                /* 限制Markdown内容中图片的最大宽度 */
+        .about-direct-content img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 1rem auto;
+            border-radius: 16px;
+            object-fit: cover;
+        }
+        
+        /* 可选：添加图片容器，防止超大图片溢出父容器 */
+        .about-direct-content p img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        /* 针对移动端进一步优化 */
+        @media (max-width: 860px) {
+            .about-direct-content img {
+                max-width: 100%;
+                border-radius: 12px;
+            }
+}
+
         /* Main container */
         .floating-container {
             max-width: var(--content-max-width);
