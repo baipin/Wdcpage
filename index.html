@@ -544,10 +544,7 @@
             htmlElem.classList.remove('mdui-theme-light', 'mdui-theme-dark', 'mdui-theme-auto');
             htmlElem.classList.add(`mdui-theme-${theme}`);
             updateThemeIcon();
-            // Force repaint for MDUI components
-            document.body.style.display = 'none';
-            document.body.offsetHeight;
-            document.body.style.display = '';
+            // 移除强制重绘，让CSS过渡自然生效，同时防止页面跳动
         }
         
         themeToggle.addEventListener('click', () => {
