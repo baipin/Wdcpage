@@ -65,6 +65,8 @@
             transition: all 0.3s;
         }
 
+        .nav-logo { display: flex; align-items: center; gap: 12px; font-weight: 900; font-size: 1.2rem; }
+
         /* 重点：白天模式下的图标与文字颜色变量覆盖 */
         .mdui-theme-light .custom-app-bar {
             --mdui-color-on-surface: 0, 0, 0; 
@@ -181,7 +183,10 @@
     </mdui-navigation-drawer>
 
     <header class="custom-app-bar">
-        <img src="/logo.png" alt="Logo" class="nav-logo" onclick="window.location.href='#'">
+        <div class="nav-logo">
+            <img src="/logo.png" alt="Logo" class="nav-logo" onclick="window.location.href='#'">
+            <span>WANG Dingchao</span>
+        </div>
         
         <div class="nav-links-container">
             <mdui-button variant="text" href="#"><mdui-icon slot="icon" name="home"></mdui-icon><span data-i18n="nav_home">首页</span></mdui-button>
