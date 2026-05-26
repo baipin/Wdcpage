@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>WANG Dingchao - Homepage</title>
+    <link rel="icon" type="image/png" href="/img/logo.png">
     
     <!-- MDUI 2.0 + Fonts + Icons -->
     <link rel="stylesheet" href="https://unpkg.com/mdui@2.0.3/mdui.css">
@@ -57,7 +58,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('/home.jpg') center/cover no-repeat;
+            background: url('/img/home.jpg') center/cover no-repeat;
             z-index: -2;
             transition: filter 0.4s ease, opacity 0.3s;
             opacity: 0.9;
@@ -327,6 +328,11 @@
         .mdui-theme-dark .social-icon {
             color: #ddd;
         }
+        .social-icon-img {
+            width: 24px;
+            height: 24px;
+            display: block;
+        }
         .social-info {
             flex: 1;
             font-size: 0.95rem;
@@ -424,7 +430,7 @@
     <!-- Top Navigation Bar -->
     <header class="custom-app-bar">
         <div class="nav-logo" onclick="window.location.href='#'">
-            <img src="/logo.png" alt="logo" onerror="this.src='https://via.placeholder.com/40?text=W'">
+            <img src="/img/logo.png" alt="logo" onerror="this.src='https://via.placeholder.com/40?text=W'">
             <span>WANG Dingchao</span>
         </div>
         <div class="nav-links-container">
@@ -487,7 +493,7 @@
 
         <!-- Sidebar: avatar + social media with explicit usernames -->
         <aside class="sidebar-card">
-            <img src="/person.jpeg" alt="Wang Dingchao" style="width: 110px; height: 110px; border-radius: 50%; object-fit: cover; border: 3px solid rgba(255,255,255,0.6); box-shadow: 0 12px 22px -10px rgba(0,0,0,0.2); margin-bottom: 18px;">
+            <img src="/img/person.jpeg" alt="Wang Dingchao" style="width: 110px; height: 110px; border-radius: 50%; object-fit: cover; border: 3px solid rgba(255,255,255,0.6); box-shadow: 0 12px 22px -10px rgba(0,0,0,0.2); margin-bottom: 18px;">
             <h2 style="margin: 0 0 6px; font-weight: 700; font-size: 1.8rem;">WANG Dingchao</h2>
             <p style="font-size: 0.9rem; margin-bottom: 12px;">Student / Dennis</p>
             
@@ -496,7 +502,7 @@
             <!-- Social links with platform + handle -->
             <div class="social-links-grid">
                 <a class="social-item" href="https://github.com/baipin" target="_blank" rel="noopener">
-                    <span class="social-icon"><mdui-icon name="code" style="font-size: 26px;"></mdui-icon></span>
+                    <span class="social-icon"><img class="social-icon-img" src="/img/github.svg" alt="GitHub icon"></span>
                     <span class="social-info"><strong>GitHub</strong><br><span class="social-handle">@baipin</span></span>
                 </a>
                 <a class="social-item" href="https://t.me/baipinsay" target="_blank" rel="noopener">
@@ -511,6 +517,11 @@
                     <span class="social-icon"><mdui-icon name="rss_feed" style="font-size: 26px; color: #f26522;"></mdui-icon></span>
                     <span class="social-info"><strong>RSS Feed</strong><br><span class="social-handle">baipin.pw/feed</span></span>
                 </a>
+                <a class="social-item" href="https://www.linkedin.com/in/wangdingchao/" target="_blank" rel="noopener">
+                    <span class="social-icon"><img class="social-icon-img" src="/img/linkedin.svg" alt="LinkedIn icon"></span>
+                    <span class="social-info"><strong>LinkedIn</strong><br><span class="social-handle">/in/wangdingchao</span></span>
+                </a>
+
                 <a class="social-item" href="https://www.instagram.com/baipinins/" target="_blank" rel="noopener">
                     <span class="social-icon"><mdui-icon name="alternate_email" style="font-size: 24px;"></mdui-icon></span>
                     <span class="social-info"><strong>Instagram</strong><br><span class="social-handle">@baipinins</span></span>
@@ -562,7 +573,7 @@
         
         // Optional: detect if background image fails to load
         const bgTest = new Image();
-        bgTest.src = '/home.jpg';
+        bgTest.src = '/img/home.jpg';
         bgTest.onerror = () => {
             document.body.classList.add('no-bg');
         };
