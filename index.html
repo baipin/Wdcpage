@@ -382,36 +382,58 @@
             border-bottom: 1px dotted;
         }
 
-        /* Global fixes for MDUI buttons theme switching */
+        /* Global fixes for MDUI buttons theme switching (high contrast in both themes) */
         mdui-button, mdui-button-icon {
-            transition: color 0.2s, background 0.2s;
+            transition: color 0.2s, background 0.2s, border-color 0.2s;
         }
+
+        /* Light mode */
         .mdui-theme-light mdui-button[variant="text"],
         .mdui-theme-light mdui-button-icon {
-            --mdui-color-on-surface: 0, 0, 0;
-            color: #111 !important;
+            color: #111827 !important;
+            --mdui-color-on-surface: 17, 24, 39;
+            background: transparent !important;
         }
         .mdui-theme-light mdui-button[variant="filled"] {
-            --mdui-color-primary: 25, 25, 35;
-            background-color: #1f1f2b !important;
-            color: white !important;
+            background-color: #1f2937 !important;
+            color: #ffffff !important;
+            --mdui-color-primary: 31, 41, 55;
         }
+        .mdui-theme-light mdui-button[variant="outlined"] {
+            color: #111827 !important;
+            border: 1px solid #374151 !important;
+            background: rgba(255,255,255,0.6) !important;
+        }
+        .mdui-theme-light mdui-button[variant="tonal"] {
+            color: #0f172a !important;
+            background: rgba(15, 23, 42, 0.10) !important;
+        }
+
+        /* Dark mode */
         .mdui-theme-dark mdui-button[variant="text"],
         .mdui-theme-dark mdui-button-icon {
-            --mdui-color-on-surface: 230, 230, 235;
-            color: #e8e8ec !important;
+            color: #f3f4f6 !important;
+            --mdui-color-on-surface: 243, 244, 246;
+            background: transparent !important;
         }
         .mdui-theme-dark mdui-button[variant="filled"] {
-            --mdui-color-primary: 70, 70, 85;
-            background-color: #3a3a44 !important;
+            background-color: #e5e7eb !important;
+            color: #111827 !important;
+            --mdui-color-primary: 229, 231, 235;
         }
-        /* Ensure icons inside buttons adopt proper color */
-        .mdui-theme-light mdui-icon {
-            color: #1e1e2a !important;
+        .mdui-theme-dark mdui-button[variant="outlined"] {
+            color: #f3f4f6 !important;
+            border: 1px solid #9ca3af !important;
+            background: rgba(255,255,255,0.06) !important;
         }
-        .mdui-theme-dark mdui-icon {
-            color: #d4d4dc !important;
+        .mdui-theme-dark mdui-button[variant="tonal"] {
+            color: #f9fafb !important;
+            background: rgba(255,255,255,0.14) !important;
         }
+
+        /* Keep icons readable in both modes */
+        .mdui-theme-light mdui-icon { color: #111827 !important; }
+        .mdui-theme-dark mdui-icon { color: #f3f4f6 !important; }
     </style>
 </head>
 <body class="mdui-theme-auto">
