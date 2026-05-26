@@ -434,6 +434,43 @@
         /* Keep icons readable in both modes */
         .mdui-theme-light mdui-icon { color: #111827 !important; }
         .mdui-theme-dark mdui-icon { color: #f3f4f6 !important; }
+
+        .hero-cloud-btn {
+            border-radius: 40px;
+        }
+        .mdui-theme-light .hero-cloud-btn {
+            background: rgba(255, 255, 255, 0.88) !important;
+            color: #111827 !important;
+            border: 1px solid rgba(17, 24, 39, 0.12);
+        }
+        .mdui-theme-dark .hero-cloud-btn {
+            background: rgba(255, 255, 255, 0.20) !important;
+            color: #f9fafb !important;
+            border: 1px solid rgba(255, 255, 255, 0.28);
+        }
+
+    
+        /* Drawer theme sync */
+        #drawer {
+            transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+        }
+        .mdui-theme-light #drawer {
+            background: #ffffff !important;
+            color: #111827 !important;
+            border-left: 1px solid rgba(17, 24, 39, 0.08);
+        }
+        .mdui-theme-dark #drawer {
+            background: #16161d !important;
+            color: #f3f4f6 !important;
+            border-left: 1px solid rgba(255, 255, 255, 0.12);
+        }
+        .mdui-theme-light #drawer mdui-list-item {
+            color: #111827 !important;
+        }
+        .mdui-theme-dark #drawer mdui-list-item {
+            color: #f3f4f6 !important;
+        }
+
     </style>
 </head>
 <body class="mdui-theme-auto">
@@ -473,7 +510,7 @@
                 <h4>Yunhe Terraces · Lishui, Zhejiang</h4>
                 <p>「Wandering through clouds and mist」 — Shot during a summer trip in 2023</p>
             </div>
-            <mdui-button variant="tonal" style="--mdui-color-secondary-container: rgba(255,255,255,0.2); color:white; border-radius: 40px;" href="https://baipin.pw/">
+            <mdui-button variant="tonal" class="hero-cloud-btn" href="https://baipin.pw/">
                 Walk Into Clouds <mdui-icon slot="icon" name="east"></mdui-icon>
             </mdui-button>
         </div>
@@ -573,11 +610,19 @@
             themeToggle.icon = isDark ? 'dark_mode' : 'light_mode';
         }
         
-        function applyTheme(theme) {
+                function applyTheme(theme) {
             htmlElem.classList.remove('mdui-theme-light', 'mdui-theme-dark', 'mdui-theme-auto');
             htmlElem.classList.add(`mdui-theme-${theme}`);
+
+            const isDark = theme === 'dark' || (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+            if (drawer) {
+                drawer.style.colorScheme = isDark ? 'dark' : 'light';
+                // force immediate style refresh for mobile drawer
+                drawer.style.transform = 'translateZ(0)';
+                requestAnimationFrame(() => { drawer.style.transform = ''; });
+            }
+
             updateThemeIcon();
-            // 移除强制重绘，让CSS过渡自然生效，同时防止页面跳动
         }
         
         themeToggle.addEventListener('click', () => {
