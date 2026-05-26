@@ -650,6 +650,95 @@
         html[data-theme-resolved="dark"] .social-icon-dual .icon-light { display: none !important; }
         html[data-theme-resolved="dark"] .social-icon-dual .icon-dark { display: block !important; }
 
+    
+
+        /* STRICT THEME FIX: buttons and social icons */
+        .social-icon-dual { position: relative; width: 24px; height: 24px; display: inline-flex; }
+
+        /* explicit light theme */
+        .mdui-theme-light .custom-app-bar,
+        .mdui-theme-light .custom-app-bar .nav-logo,
+        .mdui-theme-light .custom-app-bar .nav-logo span,
+        .mdui-theme-light .custom-app-bar mdui-button,
+        .mdui-theme-light .custom-app-bar mdui-button-icon,
+        .mdui-theme-light .custom-app-bar mdui-icon,
+        .mdui-theme-light mdui-button[variant="text"],
+        .mdui-theme-light mdui-button[variant="outlined"],
+        .mdui-theme-light mdui-button[variant="tonal"] {
+            color: #111827 !important;
+        }
+        .mdui-theme-light mdui-button[variant="filled"] {
+            background-color: #1f2937 !important;
+            color: #ffffff !important;
+        }
+        .mdui-theme-light .hero-cloud-btn {
+            color: #ffffff !important;
+            background: rgba(17, 24, 39, 0.56) !important;
+            border: 1px solid rgba(255, 255, 255, 0.22) !important;
+        }
+        .mdui-theme-light .hero-cloud-btn mdui-icon { color: #ffffff !important; }
+        .mdui-theme-light .social-icon-dual .icon-light { display: block !important; }
+        .mdui-theme-light .social-icon-dual .icon-dark { display: none !important; }
+
+        /* explicit dark theme */
+        .mdui-theme-dark .custom-app-bar,
+        .mdui-theme-dark .custom-app-bar .nav-logo,
+        .mdui-theme-dark .custom-app-bar .nav-logo span,
+        .mdui-theme-dark .custom-app-bar mdui-button,
+        .mdui-theme-dark .custom-app-bar mdui-button-icon,
+        .mdui-theme-dark .custom-app-bar mdui-icon,
+        .mdui-theme-dark mdui-button[variant="text"],
+        .mdui-theme-dark mdui-button[variant="outlined"],
+        .mdui-theme-dark mdui-button[variant="tonal"] {
+            color: #f3f4f6 !important;
+        }
+        .mdui-theme-dark mdui-button[variant="filled"] {
+            background-color: #e5e7eb !important;
+            color: #111827 !important;
+        }
+        .mdui-theme-dark .hero-cloud-btn {
+            color: #111827 !important;
+            background: rgba(255, 255, 255, 0.88) !important;
+            border: 1px solid rgba(17, 24, 39, 0.18) !important;
+        }
+        .mdui-theme-dark .hero-cloud-btn mdui-icon { color: #111827 !important; }
+        .mdui-theme-dark .social-icon-dual .icon-light { display: none !important; }
+        .mdui-theme-dark .social-icon-dual .icon-dark { display: block !important; }
+
+        /* auto theme */
+        @media (prefers-color-scheme: light) {
+            .mdui-theme-auto .custom-app-bar,
+            .mdui-theme-auto .custom-app-bar .nav-logo,
+            .mdui-theme-auto .custom-app-bar .nav-logo span,
+            .mdui-theme-auto .custom-app-bar mdui-button,
+            .mdui-theme-auto .custom-app-bar mdui-button-icon,
+            .mdui-theme-auto .custom-app-bar mdui-icon,
+            .mdui-theme-auto mdui-button[variant="text"],
+            .mdui-theme-auto mdui-button[variant="outlined"],
+            .mdui-theme-auto mdui-button[variant="tonal"] { color: #111827 !important; }
+            .mdui-theme-auto mdui-button[variant="filled"] { background-color: #1f2937 !important; color: #ffffff !important; }
+            .mdui-theme-auto .hero-cloud-btn { color:#ffffff !important; background: rgba(17,24,39,.56) !important; border:1px solid rgba(255,255,255,.22) !important; }
+            .mdui-theme-auto .hero-cloud-btn mdui-icon { color:#ffffff !important; }
+            .mdui-theme-auto .social-icon-dual .icon-light { display:block !important; }
+            .mdui-theme-auto .social-icon-dual .icon-dark { display:none !important; }
+        }
+        @media (prefers-color-scheme: dark) {
+            .mdui-theme-auto .custom-app-bar,
+            .mdui-theme-auto .custom-app-bar .nav-logo,
+            .mdui-theme-auto .custom-app-bar .nav-logo span,
+            .mdui-theme-auto .custom-app-bar mdui-button,
+            .mdui-theme-auto .custom-app-bar mdui-button-icon,
+            .mdui-theme-auto .custom-app-bar mdui-icon,
+            .mdui-theme-auto mdui-button[variant="text"],
+            .mdui-theme-auto mdui-button[variant="outlined"],
+            .mdui-theme-auto mdui-button[variant="tonal"] { color: #f3f4f6 !important; }
+            .mdui-theme-auto mdui-button[variant="filled"] { background-color: #e5e7eb !important; color: #111827 !important; }
+            .mdui-theme-auto .hero-cloud-btn { color:#111827 !important; background: rgba(255,255,255,.88) !important; border:1px solid rgba(17,24,39,.18) !important; }
+            .mdui-theme-auto .hero-cloud-btn mdui-icon { color:#111827 !important; }
+            .mdui-theme-auto .social-icon-dual .icon-light { display:none !important; }
+            .mdui-theme-auto .social-icon-dual .icon-dark { display:block !important; }
+        }
+
     </style>
 </head>
 <body class="mdui-theme-auto">

@@ -21,9 +21,9 @@
     }
     .mdui-theme-dark body::before { filter:brightness(.7) contrast(1.05); }
     body::after { content:""; position:fixed; inset:0; z-index:-1; pointer-events:none;
-      background: radial-gradient(circle at 20% 30%, rgba(0,0,0,.08), rgba(0,0,0,.2)); }
+      background: radial-gradient(circle at 20% 30%, rgba(0,0,0,.04), rgba(0,0,0,.12)); }
     .mdui-theme-dark body::after {
-      background: radial-gradient(circle at 20% 30%, rgba(0,0,0,.45), rgba(0,0,0,.7));
+      background: radial-gradient(circle at 20% 30%, rgba(0,0,0,.28), rgba(0,0,0,.48));
     }
 
     .custom-app-bar {
@@ -41,12 +41,12 @@
     .mobile-menu-btn { display:none; }
     @media (max-width:860px) { .nav-links-container{display:none;} .mobile-menu-btn{display:inline-flex!important;} .custom-app-bar{padding:0 5%;} }
 
-    .container { max-width:var(--content-max-width); margin:36px auto 70px; width:calc(100% - 40px); }
+    .container { max-width:var(--content-max-width); margin:36px auto 70px; width:calc(100% - 40px); position: relative; z-index: 30; }
     .about-card {
-      border-radius:var(--radius-card); padding:28px 24px; background:#fff; color:#121212;
+      border-radius:var(--radius-card); padding:28px 24px; background: rgba(255,255,255,0.97); color:#121212;
       box-shadow: 0 25px 45px -12px rgba(0,0,0,.2);
     }
-    .mdui-theme-dark .about-card { background:#1c1c22; color:#efefef; }
+    .mdui-theme-dark .about-card { background: rgba(28,28,34,0.98); color:#efefef; }
 
     .about-md { line-height:1.72; font-size:1rem; }
     .about-md img { max-width:100%; height:auto; border-radius:14px; }
