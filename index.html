@@ -471,6 +471,45 @@
             color: #f3f4f6 !important;
         }
 
+    
+
+        /* Auto theme mapping */
+        @media (prefers-color-scheme: light) {
+            .mdui-theme-auto mdui-button[variant="text"],
+            .mdui-theme-auto mdui-button-icon { color: #111827 !important; }
+            .mdui-theme-auto mdui-button[variant="filled"] { background-color: #1f2937 !important; color: #ffffff !important; }
+            .mdui-theme-auto mdui-button[variant="outlined"] { color: #111827 !important; border: 1px solid #374151 !important; background: rgba(255,255,255,0.6) !important; }
+            .mdui-theme-auto mdui-button[variant="tonal"] { color: #0f172a !important; background: rgba(15, 23, 42, 0.10) !important; }
+
+            .mdui-theme-auto .hero-cloud-btn {
+                background: rgba(255, 255, 255, 0.88) !important;
+                color: #111827 !important;
+                border: 1px solid rgba(17, 24, 39, 0.12);
+            }
+            .mdui-theme-auto .hero-cloud-btn mdui-icon { color: #111827 !important; }
+
+            .mdui-theme-auto #drawer { background: #ffffff !important; color: #111827 !important; border-left: 1px solid rgba(17, 24, 39, 0.08); }
+            .mdui-theme-auto #drawer mdui-list-item { color: #111827 !important; }
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .mdui-theme-auto mdui-button[variant="text"],
+            .mdui-theme-auto mdui-button-icon { color: #f3f4f6 !important; }
+            .mdui-theme-auto mdui-button[variant="filled"] { background-color: #e5e7eb !important; color: #111827 !important; }
+            .mdui-theme-auto mdui-button[variant="outlined"] { color: #f3f4f6 !important; border: 1px solid #9ca3af !important; background: rgba(255,255,255,0.06) !important; }
+            .mdui-theme-auto mdui-button[variant="tonal"] { color: #f9fafb !important; background: rgba(255,255,255,0.14) !important; }
+
+            .mdui-theme-auto .hero-cloud-btn {
+                background: rgba(255, 255, 255, 0.20) !important;
+                color: #f9fafb !important;
+                border: 1px solid rgba(255, 255, 255, 0.28);
+            }
+            .mdui-theme-auto .hero-cloud-btn mdui-icon { color: #f9fafb !important; }
+
+            .mdui-theme-auto #drawer { background: #16161d !important; color: #f3f4f6 !important; border-left: 1px solid rgba(255, 255, 255, 0.12); }
+            .mdui-theme-auto #drawer mdui-list-item { color: #f3f4f6 !important; }
+        }
+
     </style>
 </head>
 <body class="mdui-theme-auto">
@@ -617,9 +656,6 @@
             const isDark = theme === 'dark' || (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches);
             if (drawer) {
                 drawer.style.colorScheme = isDark ? 'dark' : 'light';
-                // force immediate style refresh for mobile drawer
-                drawer.style.transform = 'translateZ(0)';
-                requestAnimationFrame(() => { drawer.style.transform = ''; });
             }
 
             updateThemeIcon();
