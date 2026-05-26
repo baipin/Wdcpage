@@ -756,6 +756,35 @@
             .mdui-theme-auto .social-icon-dual .icon-dark { display: block !important; }
         }
 
+    
+
+        /* TARGETED GITHUB/LINKEDIN ICON OVERRIDE */
+        .social-github .icon-light, .social-github .icon-dark,
+        .social-linkedin .icon-light, .social-linkedin .icon-dark { display: none !important; }
+
+        .mdui-theme-light .social-github .icon-light,
+        .mdui-theme-light .social-linkedin .icon-light { display: block !important; }
+        .mdui-theme-light .social-github .icon-dark,
+        .mdui-theme-light .social-linkedin .icon-dark { display: none !important; }
+
+        .mdui-theme-dark .social-github .icon-light,
+        .mdui-theme-dark .social-linkedin .icon-light { display: none !important; }
+        .mdui-theme-dark .social-github .icon-dark,
+        .mdui-theme-dark .social-linkedin .icon-dark { display: block !important; }
+
+        @media (prefers-color-scheme: light) {
+            .mdui-theme-auto .social-github .icon-light,
+            .mdui-theme-auto .social-linkedin .icon-light { display: block !important; }
+            .mdui-theme-auto .social-github .icon-dark,
+            .mdui-theme-auto .social-linkedin .icon-dark { display: none !important; }
+        }
+        @media (prefers-color-scheme: dark) {
+            .mdui-theme-auto .social-github .icon-light,
+            .mdui-theme-auto .social-linkedin .icon-light { display: none !important; }
+            .mdui-theme-auto .social-github .icon-dark,
+            .mdui-theme-auto .social-linkedin .icon-dark { display: block !important; }
+        }
+
     </style>
 </head>
 <body class="mdui-theme-auto">
@@ -846,7 +875,7 @@
             <!-- Social links with platform + handle -->
                         <div class="social-links-grid">
                 <a class="social-item" href="https://github.com/baipin" target="_blank" rel="noopener">
-                    <span class="social-icon social-icon-dual"><img class="social-icon-img icon-light" src="/img/github-black.svg" alt="GitHub icon"><img class="social-icon-img icon-dark" src="/img/github-white.svg" alt="GitHub icon"></span>
+                    <span class="social-icon social-icon-dual social-github"><img class="social-icon-img icon-light" src="/img/github-black.svg" alt="GitHub icon"><img class="social-icon-img icon-dark" src="/img/github-white.svg" alt="GitHub icon"></span>
                     <span class="social-info"><strong>GitHub</strong><br><span class="social-handle">@baipin</span></span>
                 </a>
                 <a class="social-item" href="https://t.me/baipinsay" target="_blank" rel="noopener">
@@ -862,7 +891,7 @@
                     <span class="social-info"><strong>RSS Feed</strong><br><span class="social-handle">baipin.pw/feed</span></span>
                 </a>
                 <a class="social-item" href="https://www.linkedin.com/in/wangdingchao/" target="_blank" rel="noopener">
-                    <span class="social-icon social-icon-dual"><img class="social-icon-img icon-light" src="/img/linkedin-black.svg" alt="LinkedIn icon"><img class="social-icon-img icon-dark" src="/img/linkedin-white.svg" alt="LinkedIn icon"></span>
+                    <span class="social-icon social-icon-dual social-linkedin"><img class="social-icon-img icon-light" src="/img/linkedin-black.svg" alt="LinkedIn icon"><img class="social-icon-img icon-dark" src="/img/linkedin-white.svg" alt="LinkedIn icon"></span>
                     <span class="social-info"><strong>LinkedIn</strong><br><span class="social-handle">/in/wangdingchao</span></span>
                 </a>
                 <a class="social-item" href="https://www.instagram.com/baipinins/" target="_blank" rel="noopener">
