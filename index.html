@@ -589,6 +589,34 @@
             .mdui-theme-auto .social-icon-img { filter: invert(1) brightness(1.25); }
         }
 
+    
+
+        /* Final resolved-theme overrides */
+        .social-icon-dual { position: relative; width: 24px; height: 24px; display: inline-flex; }
+        .social-icon-dual .icon-dark { display: none; }
+
+        html[data-theme-resolved="light"] .custom-app-bar,
+        html[data-theme-resolved="light"] .custom-app-bar .nav-logo,
+        html[data-theme-resolved="light"] .custom-app-bar .nav-logo span,
+        html[data-theme-resolved="light"] .custom-app-bar mdui-button,
+        html[data-theme-resolved="light"] .custom-app-bar mdui-button-icon,
+        html[data-theme-resolved="light"] .custom-app-bar mdui-icon {
+            color: #111827 !important;
+        }
+        html[data-theme-resolved="dark"] .custom-app-bar,
+        html[data-theme-resolved="dark"] .custom-app-bar .nav-logo,
+        html[data-theme-resolved="dark"] .custom-app-bar .nav-logo span,
+        html[data-theme-resolved="dark"] .custom-app-bar mdui-button,
+        html[data-theme-resolved="dark"] .custom-app-bar mdui-button-icon,
+        html[data-theme-resolved="dark"] .custom-app-bar mdui-icon {
+            color: #f3f4f6 !important;
+        }
+
+        html[data-theme-resolved="light"] .social-icon-dual .icon-light { display: block; }
+        html[data-theme-resolved="light"] .social-icon-dual .icon-dark { display: none; }
+        html[data-theme-resolved="dark"] .social-icon-dual .icon-light { display: none; }
+        html[data-theme-resolved="dark"] .social-icon-dual .icon-dark { display: block; }
+
     </style>
 </head>
 <body class="mdui-theme-auto">
@@ -679,7 +707,7 @@
             <!-- Social links with platform + handle -->
             <div class="social-links-grid">
                 <a class="social-item" href="https://github.com/baipin" target="_blank" rel="noopener">
-                    <span class="social-icon"><img class="social-icon-img" src="/img/github.svg" alt="GitHub icon"></span>
+                    <span class="social-icon social-icon-dual"><img class="social-icon-img icon-light" src="/img/github-black.svg" alt="GitHub icon"><img class="social-icon-img icon-dark" src="/img/github-white.svg" alt="GitHub icon"></span>
                     <span class="social-info"><strong>GitHub</strong><br><span class="social-handle">@baipin</span></span>
                 </a>
                 <a class="social-item" href="https://t.me/baipinsay" target="_blank" rel="noopener">
@@ -695,7 +723,7 @@
                     <span class="social-info"><strong>RSS Feed</strong><br><span class="social-handle">baipin.pw/feed</span></span>
                 </a>
                 <a class="social-item" href="https://www.linkedin.com/in/wangdingchao/" target="_blank" rel="noopener">
-                    <span class="social-icon"><img class="social-icon-img" src="/img/linkedin.svg" alt="LinkedIn icon"></span>
+                    <span class="social-icon social-icon-dual"><img class="social-icon-img icon-light" src="/img/linkedin-black.svg" alt="LinkedIn icon"><img class="social-icon-img icon-dark" src="/img/linkedin-white.svg" alt="LinkedIn icon"></span>
                     <span class="social-info"><strong>LinkedIn</strong><br><span class="social-handle">/in/wangdingchao</span></span>
                 </a>
 
@@ -733,6 +761,7 @@
             htmlElem.classList.add(`mdui-theme-${theme}`);
 
             const isDark = theme === 'dark' || (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+            htmlElem.setAttribute('data-theme-resolved', isDark ? 'dark' : 'light');
             if (drawer) {
                 drawer.style.colorScheme = isDark ? 'dark' : 'light';
             }
