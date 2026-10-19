@@ -215,10 +215,133 @@
             }
 }
 
+        /* Homepage project directory */
+        .project-showcase {
+            max-width: var(--content-max-width);
+            width: calc(100% - 48px);
+            margin: -54px auto 72px;
+            position: relative;
+            z-index: 40;
+        }
+        .project-showcase-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 18px;
+            color: #fff;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.28);
+        }
+        .project-showcase-heading {
+            margin: 0;
+            font-size: 1.35rem;
+            font-weight: 750;
+        }
+        .project-showcase-subtitle {
+            margin: 4px 0 0;
+            font-size: 0.88rem;
+            opacity: 0.88;
+        }
+        .project-showcase-controls {
+            display: flex;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+        .project-showcase-controls mdui-button-icon {
+            --mdui-color-on-surface: 255, 255, 255;
+            --mdui-color-surface-container: 255, 255, 255;
+            background: rgba(0, 0, 0, 0.32);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.24);
+        }
+        .project-showcase-track {
+            display: grid;
+            grid-auto-flow: column;
+            grid-auto-columns: minmax(245px, 1fr);
+            gap: 18px;
+            overflow-x: auto;
+            overscroll-behavior-inline: contain;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            padding: 2px 2px 12px;
+        }
+        .project-showcase-track::-webkit-scrollbar { display: none; }
+        .project-showcase-card {
+            min-width: 0;
+            min-height: 310px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            color: #171717;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 16px 34px rgba(0, 0, 0, 0.16);
+            text-decoration: none;
+            transition: transform 0.24s ease, box-shadow 0.24s ease;
+        }
+        .project-showcase-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 38px rgba(0, 0, 0, 0.24);
+        }
+        .project-showcase-image {
+            height: 142px;
+            flex-shrink: 0;
+            position: relative;
+            background: #d9e4e8 center/cover no-repeat;
+        }
+        .project-showcase-image::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.42));
+        }
+        .project-showcase-icon {
+            position: absolute;
+            right: 14px;
+            bottom: 12px;
+            z-index: 1;
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.48);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            border-radius: 50%;
+            backdrop-filter: blur(8px);
+        }
+        .project-showcase-content {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            padding: 18px 18px 20px;
+        }
+        .project-showcase-content h3 {
+            margin: 0;
+            font-size: 1.05rem;
+            line-height: 1.35;
+        }
+        .project-showcase-content p {
+            margin: 8px 0 0;
+            color: #5c6265;
+            font-size: 0.86rem;
+            line-height: 1.55;
+        }
+        .project-showcase-link {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-top: auto;
+            padding-top: 18px;
+            color: #0f7b6e;
+            font-size: 0.84rem;
+            font-weight: 700;
+        }
+
         /* Main container */
         .floating-container {
             max-width: var(--content-max-width);
-            margin: -80px auto 70px;
+            margin: 0 auto 70px;
             position: relative;
             z-index: 30;
             display: grid;
@@ -231,8 +354,16 @@
             .floating-container {
                 grid-template-columns: 1fr;
                 gap: 28px;
-                margin-top: -60px;
+                margin-top: 0;
             }
+            .project-showcase {
+                width: calc(100% - 32px);
+                margin-top: -36px;
+                margin-bottom: 52px;
+            }
+            .project-showcase-header { align-items: flex-end; }
+            .project-showcase-subtitle { max-width: 250px; }
+            .project-showcase-track { grid-auto-columns: minmax(250px, 82vw); }
             .sidebar-card { order: -1; }
         }
 
@@ -830,6 +961,21 @@
         </div>
     </section>
 
+    <!-- Homepage project directory -->
+    <section class="project-showcase" aria-labelledby="homepage-projects-title">
+        <div class="project-showcase-header">
+            <div>
+                <h2 class="project-showcase-heading" id="homepage-projects-title">Project Directory</h2>
+                <p class="project-showcase-subtitle">Explore current projects and tools</p>
+            </div>
+            <div class="project-showcase-controls">
+                <mdui-button-icon id="project-scroll-prev" icon="arrow_back" title="Scroll left" aria-label="Scroll left"></mdui-button-icon>
+                <mdui-button-icon id="project-scroll-next" icon="arrow_forward" title="Scroll right" aria-label="Scroll right"></mdui-button-icon>
+            </div>
+        </div>
+        <div class="project-showcase-track" id="homepage-projects-track"></div>
+    </section>
+
     <!-- Main floating cards -->
     <div class="floating-container">
         <main class="main-card">
@@ -911,6 +1057,7 @@
         </div>
     </footer>
 
+    <script src="homepage-projects.js"></script>
     <script>
         // ========== THEME LOGIC (light/dark/auto with proper button recoloring) ==========
         const themeToggle = document.getElementById('theme-toggle');
@@ -948,6 +1095,32 @@
         
         const savedTheme = localStorage.getItem('theme') || 'auto';
         applyTheme(savedTheme);
+
+        function renderHomepageProjects() {
+            const track = document.getElementById('homepage-projects-track');
+            if (!track || !window.WDC_HOMEPAGE_PROJECTS) return;
+            track.innerHTML = window.WDC_HOMEPAGE_PROJECTS.map((project) => `
+                <a class="project-showcase-card" href="${project.url}" target="_blank" rel="noopener noreferrer" aria-label="${project.title}">
+                    <div class="project-showcase-image" style="background-image: url('${project.image}'); background-position: ${project.imagePosition};">
+                        <span class="project-showcase-icon"><mdui-icon name="${project.icon}"></mdui-icon></span>
+                    </div>
+                    <div class="project-showcase-content">
+                        <h3>${project.title}</h3>
+                        <p>${project.description}</p>
+                        <span class="project-showcase-link">Visit project <mdui-icon name="arrow_forward" style="font-size: 18px;"></mdui-icon></span>
+                    </div>
+                </a>
+            `).join('');
+        }
+
+        document.getElementById('project-scroll-prev')?.addEventListener('click', () => {
+            document.getElementById('homepage-projects-track')?.scrollBy({ left: -340, behavior: 'smooth' });
+        });
+        document.getElementById('project-scroll-next')?.addEventListener('click', () => {
+            document.getElementById('homepage-projects-track')?.scrollBy({ left: 340, behavior: 'smooth' });
+        });
+
+        renderHomepageProjects();
         
         // Optional: detect if background image fails to load
         const bgTest = new Image();
