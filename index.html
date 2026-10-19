@@ -9,10 +9,15 @@
     <script>
         // Resolve the saved/system theme before the first paint.
         (() => {
-            const savedTheme = localStorage.getItem('theme') || 'auto';
+            let savedTheme = 'auto';
+            try {
+                savedTheme = localStorage.getItem('theme') || 'auto';
+            } catch (_) {}
             const isDark = savedTheme === 'dark' ||
                 (savedTheme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches);
-            document.documentElement.dataset.themeResolved = isDark ? 'dark' : 'light';
+            const root = document.documentElement;
+            root.dataset.themeResolved = isDark ? 'dark' : 'light';
+            root.classList.add(isDark ? 'mdui-theme-dark' : 'mdui-theme-light');
         })();
     </script>
     
@@ -90,7 +95,8 @@
             background: linear-gradient(135deg, #1a1a24 0%, #101016 100%);
         }
 
-        .mdui-theme-dark body::before {
+        .mdui-theme-dark body::before,
+        html[data-theme-resolved="dark"] body::before {
             filter: brightness(0.7) contrast(1.05);
         }
         
@@ -104,7 +110,8 @@
             z-index: -1;
             pointer-events: none;
         }
-        .mdui-theme-dark body::after {
+        .mdui-theme-dark body::after,
+        html[data-theme-resolved="dark"] body::after {
             background: radial-gradient(circle at 20% 30%, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.7) 100%);
         }
 
