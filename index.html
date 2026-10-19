@@ -1098,15 +1098,16 @@
 
         function renderHomepageProjects() {
             const track = document.getElementById('homepage-projects-track');
-            if (!track || !window.WDC_HOMEPAGE_PROJECTS) return;
-            track.innerHTML = window.WDC_HOMEPAGE_PROJECTS.map((project) => `
-                <a class="project-showcase-card" href="${project.url}" target="_blank" rel="noopener noreferrer" aria-label="${project.title}">
+            if (!track || !window.BAIPIN_HOME_PROJECTS) return;
+            const lang = 'en';
+            track.innerHTML = window.BAIPIN_HOME_PROJECTS.map((project) => `
+                <a class="project-showcase-card" href="${project.url}" target="_blank" rel="noopener noreferrer" aria-label="${project.title[lang]}">
                     <div class="project-showcase-image" style="background-image: url('${project.image}'); background-position: ${project.imagePosition};">
                         <span class="project-showcase-icon"><mdui-icon name="${project.icon}"></mdui-icon></span>
                     </div>
                     <div class="project-showcase-content">
-                        <h3>${project.title}</h3>
-                        <p>${project.description}</p>
+                        <h3>${project.title[lang]}</h3>
+                        <p>${project.description[lang]}</p>
                         <span class="project-showcase-link">Visit project <mdui-icon name="arrow_forward" style="font-size: 18px;"></mdui-icon></span>
                     </div>
                 </a>
