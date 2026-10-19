@@ -916,6 +916,72 @@
             .mdui-theme-auto .social-linkedin .icon-dark { display: block !important; }
         }
 
+        /* Final theme contract for hero, social and project icons. */
+        html[data-theme-resolved="light"] .hero-cloud-btn {
+            color: #ffffff !important;
+            background: rgba(17, 24, 39, 0.56) !important;
+            border-color: rgba(255, 255, 255, 0.22) !important;
+            --mdui-color-on-secondary-container: 255, 255, 255;
+            --mdui-color-on-surface: 255, 255, 255;
+        }
+        html[data-theme-resolved="dark"] .hero-cloud-btn {
+            color: #111827 !important;
+            background: rgba(255, 255, 255, 0.88) !important;
+            border-color: rgba(17, 24, 39, 0.18) !important;
+            --mdui-color-on-secondary-container: 17, 24, 39;
+            --mdui-color-on-surface: 17, 24, 39;
+        }
+        html[data-theme-resolved="light"] mdui-button.hero-cloud-btn,
+        html[data-theme-resolved="light"] mdui-button.hero-cloud-btn mdui-icon {
+            color: #ffffff !important;
+        }
+        html[data-theme-resolved="dark"] mdui-button.hero-cloud-btn,
+        html[data-theme-resolved="dark"] mdui-button.hero-cloud-btn mdui-icon {
+            color: #111827 !important;
+        }
+
+        html[data-theme-resolved="light"] .social-icon-dual .icon-light,
+        html[data-theme-resolved="dark"] .social-icon-dual .icon-dark {
+            display: block !important;
+            filter: none !important;
+        }
+        html[data-theme-resolved="light"] .social-icon-dual .icon-dark,
+        html[data-theme-resolved="dark"] .social-icon-dual .icon-light {
+            display: none !important;
+        }
+        .social-icon-img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+            filter: none !important;
+        }
+
+        html[data-theme-resolved="light"] .project-showcase-icon,
+        html[data-theme-resolved="light"] .project-showcase-icon mdui-icon,
+        html[data-theme-resolved="dark"] .project-showcase-icon,
+        html[data-theme-resolved="dark"] .project-showcase-icon mdui-icon {
+            color: #ffffff !important;
+        }
+        html[data-theme-resolved="light"] .project-showcase-card {
+            color: #171717;
+            background: #ffffff;
+        }
+        html[data-theme-resolved="light"] .project-showcase-content p {
+            color: #5c6265;
+        }
+        html[data-theme-resolved="dark"] .project-showcase-card {
+            color: #f3f4f6;
+            background: #25252c;
+        }
+        html[data-theme-resolved="dark"] .project-showcase-content p {
+            color: #c7c9d1;
+        }
+        html[data-theme-resolved="dark"] .project-showcase-link {
+            color: #7dd3c7;
+        }
+        html[data-theme-resolved="light"] .project-showcase-link {
+            color: #0f7b6e;
+        }
     </style>
 </head>
 <body class="mdui-theme-auto">
