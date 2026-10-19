@@ -8,7 +8,7 @@ window.BAIPIN_HOME_PROJECTS = [
         description: { zh: '站长的个人博客。', en: 'The personal blog of the site owner.' },
         url: 'https://baipin.pw',
         icon: 'book_ribbon',
-        image: 'img/blog.jpeg',
+        image: 'img/blog.jpg',
         imagePosition: 'center',
         status: 'active'
     },
