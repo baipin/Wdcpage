@@ -35,7 +35,7 @@ window.BAIPIN_HOME_PROJECTS = [
     },
     {
         title: { zh: '全球大学申请要求聚合', en: 'Global Universities Application Requirements List' },
-        description: { zh: '根据各大排名综合的全球各大学的申请要求列表，支持以排名、学科排名、入学要求等检索。', en: 'A comprehensive list of application requirements for universities worldwide, compiled from various major rankings; supports searching by overall ranking, subject ranking, admission requirements, and more.' },
+        description: { zh: '根据各大排名综合的全球各大学的申请要求列表，支持以排名、学科排名、入学要求等检索。', en: 'A comprehensive list of application requirements for universities worldwide.' },
         url: 'https://ulist.baipon.com',
         icon: 'list',
         image: 'img/ulist.jpg',
