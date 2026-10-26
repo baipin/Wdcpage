@@ -34,6 +34,15 @@ window.BAIPIN_HOME_PROJECTS = [
         status: 'active'
     },
     {
+        title: { zh: '全球大学申请要求聚合', en: 'Global Universities Application Requirements List' },
+        description: { zh: '根据各大排名综合的全球各大学的申请要求列表，支持以排名、学科排名、入学要求等检索。', en: 'A comprehensive list of application requirements for universities worldwide, compiled from various major rankings; supports searching by overall ranking, subject ranking, admission requirements, and more.' },
+        url: 'https://ulist.baipon.com',
+        icon: 'list',
+        image: 'img/ulist.jpg',
+        imagePosition: 'left center',
+        status: 'active'
+    },
+    {
         title: { zh: '知识花园', en: 'Knowledge Garden' },
         description: { zh: '使用 AI Agent 整理想法及知识点，生成思维导图和 PPT。', en: 'An AI-powered knowledge garden for organizing ideas and generating mind maps and presentations.' },
         url: 'https://kg.baipon.com',
