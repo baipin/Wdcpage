@@ -8,7 +8,7 @@
     <link rel="icon" href="/img/logo.png">
     <script src="/reading/theme.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/mdui@2.0.3/mdui.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="/assets/material-icons.css">
     <script src="https://unpkg.com/mdui@2.0.3/mdui.global.js"></script>
     <link rel="stylesheet" href="/reading/reading.css">
     <link rel="stylesheet" href="/navigation.css">
@@ -48,18 +48,19 @@
 
 
     <main class="reading-main">
-        <a class="back-link" href="/#home">← Back to homepage</a>
-        <div class="reading-intro">
+        <mdui-button class="back-link" variant="text" href="/#home" icon="arrow_back">Back to homepage</mdui-button>
+        <mdui-card class="reading-intro" variant="elevated">
+            <mdui-icon class="reading-icon" name="menu_book" aria-hidden="true"></mdui-icon>
             <p class="eyebrow">THE READING DESK</p>
             <h1>Reading</h1>
             <p>Papers on my radar. Exploring how to make large language models remember more and run efficiently.</p>
-        </div>
-        <div class="list-toolbar">
+        </mdui-card>
+        <mdui-card class="list-toolbar" variant="elevated">
             <p id="paper-count" role="status">Loading papers…</p>
-            <label class="search-label">Filter papers<input id="paper-search" type="search" placeholder="Search title, author or arXiv ID" autocomplete="off"></label>
-        </div>
+            <mdui-text-field id="paper-search" class="paper-search" type="search" variant="outlined" label="Filter papers" placeholder="Title, author or arXiv ID" icon="search" clearable autocomplete="off"></mdui-text-field>
+        </mdui-card>
         <div id="paper-list" class="paper-list" aria-label="Reading list"></div>
-        <p id="empty-state" hidden>No matching papers. Try another search.</p>
+        <p id="empty-state" hidden><mdui-icon name="search_off" aria-hidden="true"></mdui-icon> No matching papers. Try another search.</p>
         <noscript><p>Enable JavaScript to view the reading list.</p></noscript>
     </main>
     <footer>&copy; 2026 WANG Dingchao · A space for papers and ideas.</footer>

@@ -27,14 +27,19 @@
     }
     function render() {
         list.replaceChildren();
-        const query = search.value.trim().toLowerCase();
+        const query = (search.value || '').trim().toLowerCase();
         const visible = papers.filter(p => [p.title, p.authors, p.id, p.note, ...(p.tags || [])].join(' ').toLowerCase().includes(query));
         count.textContent = `${visible.length} / ${papers.length} papers`;
         document.getElementById('empty-state').hidden = visible.length !== 0;
         for (const paper of visible) {
-            const card = element('article', 'paper-card');
+            const card = element('mdui-card', 'paper-card');
+            card.setAttribute('variant', 'elevated');
+            card.setAttribute('role', 'article');
             const meta = element('div', 'paper-meta');
-            meta.append(element('span', '', `arXiv:${paper.id}`));
+            const documentIcon = element('mdui-icon');
+            documentIcon.setAttribute('name', 'description');
+            documentIcon.setAttribute('aria-hidden', 'true');
+            meta.append(documentIcon, element('span', '', `arXiv:${paper.id}`));
             if (paper.date) meta.append(element('span', '', paper.date));
             const heading = element('h2');
             heading.append(link(paper.title || `arXiv:${paper.id}`, paper.url));
@@ -47,7 +52,19 @@
                 card.append(tags);
             }
             const actions = element('div', 'paper-actions');
-            actions.append(link('Abstract ↗', paper.url), link('PDF ↗', `https://arxiv.org/pdf/${paper.id}`));
+            for (const [label, url, icon, variant] of [
+                ['Abstract', paper.url, 'open_in_new', 'filled'],
+                ['PDF', `https://arxiv.org/pdf/${paper.id}`, 'picture_as_pdf', 'outlined']
+            ]) {
+                const button = element('mdui-button', '', label);
+                button.setAttribute('href', url);
+                button.setAttribute('target', '_blank');
+                button.setAttribute('rel', 'noopener noreferrer');
+                button.setAttribute('variant', variant);
+                button.setAttribute('icon', icon);
+                button.setAttribute('aria-label', `${label}: ${paper.title || paper.id} (opens in new tab)`);
+                actions.append(button);
+            }
             card.append(actions); list.append(card);
         }
     }
