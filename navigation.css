@@ -31,3 +31,27 @@ html[data-theme-resolved="dark"] #drawer::part(panel) { background: rgba(18,18,2
 }
 
 .nav-logo { text-decoration: none; color: inherit; }
+
+/* MDUI list text and built-in icons use theme tokens inside shadow roots.
+   Resolve them from the selected site theme, including light mode on a dark OS. */
+html[data-theme-resolved="light"] #drawer {
+    --drawer-ink: #111827;
+    --mdui-color-on-surface: 17, 24, 39;
+    --mdui-color-on-surface-variant: 55, 65, 81;
+    color-scheme: light;
+}
+html[data-theme-resolved="dark"] #drawer {
+    --drawer-ink: #f3f4f6;
+    --mdui-color-on-surface: 243, 244, 246;
+    --mdui-color-on-surface-variant: 209, 213, 219;
+    color-scheme: dark;
+}
+html[data-theme-resolved] #drawer,
+html[data-theme-resolved] #drawer mdui-list-item {
+    color: var(--drawer-ink) !important;
+}
+#drawer mdui-list-item::part(container),
+#drawer mdui-list-item::part(headline),
+#drawer mdui-list-item::part(icon) {
+    color: var(--drawer-ink);
+}
