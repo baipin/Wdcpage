@@ -49,12 +49,10 @@
 
     <main class="reading-main">
         <mdui-button class="back-link" variant="text" href="/#home" icon="arrow_back">Back to homepage</mdui-button>
-        <mdui-card class="reading-intro" variant="elevated">
-            <mdui-icon class="reading-icon" name="menu_book" aria-hidden="true"></mdui-icon>
-            <p class="eyebrow">THE READING DESK</p>
-            <h1>Reading</h1>
+        <section class="reading-intro" aria-labelledby="reading-title">
+            <h1 id="reading-title">Reading</h1>
             <p>Papers on my radar. Exploring how to make large language models remember more and run efficiently.</p>
-        </mdui-card>
+        </section>
         <mdui-card class="list-toolbar" variant="elevated">
             <p id="paper-count" role="status">Loading papers…</p>
             <mdui-text-field id="paper-search" class="paper-search" type="search" variant="outlined" label="Filter papers" placeholder="Title, author or arXiv ID" icon="search" clearable autocomplete="off"></mdui-text-field>
