@@ -13,5 +13,10 @@
     "title": "InfiniGen: Efficient Generative Inference of Large Language Models with Dynamic KV Cache Management",
     "authors": "Lee, Wonbeom, Lee, Jungi, Seo, Junghwan, Sim, Jaewoong",
     "date": "2024/06/28"
+  },
+  "https://www.nature.com/articles/s41592-024-02232-7": {
+    "title": "Spike sorting with Kilosort4",
+    "authors": "Marius Pachitariu, Shashwat Sridhar, Jacob Pennington, Carsen Stringer",
+    "date": "2024-4-8"
   }
 }
