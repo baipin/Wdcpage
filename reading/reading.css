@@ -5,7 +5,7 @@
     --surface: #ffffff;
     --outline: #d9dce1;
 }
-html { background: #f5f5f7; color: var(--ink); }
+html { background: #f5f5f7; color: var(--ink); transition: background-color .3s, color .2s; }
 html[data-theme-resolved="light"] {
     color-scheme: light;
     --mdui-color-primary: 31, 41, 55;
@@ -31,10 +31,10 @@ html[data-theme-resolved="dark"] {
 * { box-sizing: border-box; }
 body { margin: 0; padding-top: var(--nav-height); font-family: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif; }
 /* Match the homepage's landscape, with solid cards above it. */
-body::before { content: ''; position: fixed; inset: 0; z-index: -2; background: url('/img/home.jpg') center/cover no-repeat; opacity: .9; }
-body::after { content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none; background: radial-gradient(circle at 20% 30%, #00000014, #0003); }
+body::before { content: ''; position: fixed; inset: 0; z-index: -2; background: url('/img/home.jpg') center/cover no-repeat; opacity: .9; transition: filter .4s ease, opacity .3s; }
+body::after { content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none; background: radial-gradient(circle at 20% 30%, #00000073, #000b); opacity: .28; transition: opacity .4s ease; }
 html[data-theme-resolved="dark"] body::before { filter: brightness(.7) contrast(1.05); }
-html[data-theme-resolved="dark"] body::after { background: radial-gradient(circle at 20% 30%, #00000073, #000b); }
+html[data-theme-resolved="dark"] body::after { opacity: 1; }
 a { color: inherit; }
 .custom-app-bar { height: var(--nav-height); display: flex; align-items: center; padding: 0 6%; position: fixed; inset: 0 0 auto; z-index: 1100; border-bottom: 1px solid #8883; color: var(--ink); }
 .nav-logo { display: flex; gap: 12px; align-items: center; font-weight: 700; font-size: 1.3rem; cursor: pointer; white-space: nowrap; }
@@ -83,4 +83,29 @@ footer { padding: 28px 24px; text-align: center; font-size: .8rem; color: #f5f5f
     .paper-search { width: 100%; }
     .paper-card { padding: 24px; }
     .list-toolbar, .paper-card { border-radius: 24px; }
+}
+
+/* Match homepage theme timings across surfaces, text and the mobile drawer. */
+.list-toolbar, .paper-card, #empty-state {
+    transition: background-color .25s, color .2s, box-shadow .25s;
+}
+.custom-app-bar, #drawer, #drawer mdui-list-item,
+.custom-app-bar mdui-button, .custom-app-bar mdui-button-icon,
+.paper-meta, .authors, .paper-note, #paper-count {
+    transition: background-color .2s, color .2s, border-color .2s;
+}
+#drawer::part(panel), #drawer mdui-list-item::part(container),
+#drawer mdui-list-item::part(headline), #drawer mdui-list-item::part(icon) {
+    transition: background-color .2s, color .2s, border-color .2s;
+}
+@media (prefers-reduced-motion: reduce) {
+    html, body::before, body::after,
+    .list-toolbar, .paper-card, #empty-state,
+    .custom-app-bar, #drawer, #drawer mdui-list-item,
+    .custom-app-bar mdui-button, .custom-app-bar mdui-button-icon,
+    .paper-meta, .authors, .paper-note, #paper-count,
+    #drawer::part(panel), #drawer mdui-list-item::part(container),
+    #drawer mdui-list-item::part(headline), #drawer mdui-list-item::part(icon) {
+        transition: none;
+    }
 }
