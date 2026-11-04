@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- <html lang="en"> -->
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
@@ -1092,39 +1092,42 @@
             color: #f3f4f6 !important;
         }
     </style>
+    <link rel="stylesheet" href="/navigation.css">
 </head>
 <body class="mdui-theme-auto">
 
     <!-- Side drawer (mobile) -->
-    <mdui-navigation-drawer id="drawer" placement="right" close-on-overlay-click>
+    <mdui-navigation-drawer id="drawer" placement="right" modal close-on-overlay-click>
         <div style="padding: 28px 20px 8px;"><h2 style="margin:0; font-weight: 700;">Explore</h2></div>
         <mdui-list id="drawer-list">
-            <mdui-list-item icon="home" href="#">Home</mdui-list-item>
+            <mdui-list-item icon="home" href="/#home">Home</mdui-list-item>
             <mdui-list-item icon="auto_stories" href="https://baipin.pw">Blog</mdui-list-item>
-            <mdui-list-item icon="terminal" href="https://www.baipon.com/projects.html">Projects</mdui-list-item>
-            <mdui-list-item icon="account_circle" href="#about">About</mdui-list-item>
+            <mdui-list-item icon="terminal" href="/#projects">Projects</mdui-list-item>
+            <mdui-list-item icon="menu_book" href="/#reading">Reading</mdui-list-item>
+            <mdui-list-item icon="account_circle" href="/#about">About</mdui-list-item>
         </mdui-list>
     </mdui-navigation-drawer>
 
     <!-- Top Navigation Bar -->
     <header class="custom-app-bar">
-        <div class="nav-logo" onclick="window.location.href='#'">
+        <a class="nav-logo" href="/#home" aria-label="WANG Dingchao homepage">
             <img src="/img/logo.png" alt="logo" onerror="this.src='https://via.placeholder.com/40?text=W'">
             <span>WANG Dingchao</span>
-        </div>
+        </a>
         <div class="nav-links-container">
-            <mdui-button variant="text" href="#"><mdui-icon slot="icon" name="home"></mdui-icon>Home</mdui-button>
+            <mdui-button variant="text" href="/#home"><mdui-icon slot="icon" name="home"></mdui-icon>Home</mdui-button>
             <mdui-button variant="text" href="https://baipin.pw"><mdui-icon slot="icon" name="auto_stories"></mdui-icon>Blog</mdui-button>
-            <mdui-button variant="text" href="https://www.baipon.com/projects.html"><mdui-icon slot="icon" name="terminal"></mdui-icon>Projects</mdui-button>
-            <mdui-button variant="text" href="#about"><mdui-icon slot="icon" name="account_circle"></mdui-icon>About</mdui-button>
+            <mdui-button variant="text" href="/#projects"><mdui-icon slot="icon" name="terminal"></mdui-icon>Projects</mdui-button>
+            <mdui-button variant="text" href="/#reading"><mdui-icon slot="icon" name="menu_book"></mdui-icon>Reading</mdui-button>
+            <mdui-button variant="text" href="/#about"><mdui-icon slot="icon" name="account_circle"></mdui-icon>About</mdui-button>
         </div>
         <div style="flex-grow: 1"></div>
-        <mdui-button-icon id="theme-toggle" icon="light_mode"></mdui-button-icon>
-        <mdui-button-icon icon="menu" class="mobile-menu-btn" onclick="document.getElementById('drawer').open = true"></mdui-button-icon>
+        <mdui-button-icon id="theme-toggle" aria-label="Toggle color theme" icon="light_mode"></mdui-button-icon>
+        <mdui-button-icon icon="menu" aria-label="Open navigation menu" class="mobile-menu-btn" onclick="document.getElementById('drawer').open = true"></mdui-button-icon>
     </header>
 
     <!-- Hero Section with landscape photo info -->
-    <section class="hero-section">
+    <section class="hero-section" id="home">
         <div class="photo-info-box">
             <div class="photo-text">
                 <h4>Yunhe Terraces · Lishui, Zhejiang</h4>
@@ -1137,7 +1140,7 @@
     </section>
 
     <!-- Homepage project directory -->
-    <section class="project-showcase" aria-labelledby="homepage-projects-title">
+    <section id="projects" class="project-showcase" aria-labelledby="homepage-projects-title">
         <div class="project-showcase-header">
             <div>
                 <h2 class="project-showcase-heading" id="homepage-projects-title">Project Directory</h2>
@@ -1151,6 +1154,15 @@
         <div class="project-showcase-track" id="homepage-projects-track"></div>
     </section>
 
+    <section id="reading" class="reading-preview" aria-labelledby="reading-title">
+        <div>
+            <p class="reading-eyebrow">PAPERS &amp; IDEAS</p>
+            <h2 id="reading-title">Reading</h2>
+            <p>Currently exploring KV cache compression, reuse and efficient LLM inference.</p>
+        </div>
+        <a class="reading-open" href="/reading/">Explore reading list <span aria-hidden="true">↗</span></a>
+    </section>
+
     <!-- Main floating cards -->
     <div class="floating-container">
         <main class="main-card">
@@ -1161,8 +1173,8 @@
             
             <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 24px;">
                 <mdui-button variant="filled" href="https://baipin.pw" style="border-radius: 40px; padding: 0 24px;">Enter Blog</mdui-button>
-                <mdui-button variant="outlined" href="https://www.baipon.com/projects.html" style="border-radius: 40px;">Explore Projects</mdui-button>
-                <mdui-button variant="text" href="#about">About Me</mdui-button>
+                <mdui-button variant="outlined" href="/#projects" style="border-radius: 40px;">Explore Projects</mdui-button>
+                <mdui-button variant="text" href="/#about">About Me</mdui-button>
             </div>
 
             <!-- Markdown inclusion from about.md, no special quote style -->
@@ -1221,7 +1233,7 @@
                 </a>
             </div>
 
-            <mdui-button variant="tonal" full-width style="border-radius: 44px; margin-top: 8px;" href="#about">About Me More</mdui-button>
+            <mdui-button variant="tonal" full-width style="border-radius: 44px; margin-top: 8px;" href="/#about">About Me More</mdui-button>
         </aside>
     </div>
 

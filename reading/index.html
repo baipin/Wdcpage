@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Reading — WANG Dingchao</title>
+    <meta name="description" content="Papers I am currently following on KV cache and efficient LLM inference.">
+    <link rel="icon" href="/img/logo.png">
+    <script src="/reading/theme.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/mdui@2.0.3/mdui.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="https://unpkg.com/mdui@2.0.3/mdui.global.js"></script>
+    <link rel="stylesheet" href="/reading/reading.css">
+    <link rel="stylesheet" href="/navigation.css">
+    <script defer src="/reading/papers.js"></script>
+    <script defer src="/reading/reading.js"></script>
+</head>
+<body>
+    <!-- Side drawer (mobile) -->
+    <mdui-navigation-drawer id="drawer" placement="right" modal close-on-overlay-click>
+        <div style="padding: 28px 20px 8px;"><h2 style="margin:0; font-weight: 700;">Explore</h2></div>
+        <mdui-list id="drawer-list">
+            <mdui-list-item icon="home" href="/#home">Home</mdui-list-item>
+            <mdui-list-item icon="auto_stories" href="https://baipin.pw">Blog</mdui-list-item>
+            <mdui-list-item icon="terminal" href="/#projects">Projects</mdui-list-item>
+            <mdui-list-item icon="menu_book" href="/#reading">Reading</mdui-list-item>
+            <mdui-list-item icon="account_circle" href="/#about">About</mdui-list-item>
+        </mdui-list>
+    </mdui-navigation-drawer>
+
+    <!-- Top Navigation Bar -->
+    <header class="custom-app-bar">
+        <a class="nav-logo" href="/#home" aria-label="WANG Dingchao homepage">
+            <img src="/img/logo.png" alt="logo" onerror="this.src='https://via.placeholder.com/40?text=W'">
+            <span>WANG Dingchao</span>
+        </a>
+        <div class="nav-links-container">
+            <mdui-button variant="text" href="/#home"><mdui-icon slot="icon" name="home"></mdui-icon>Home</mdui-button>
+            <mdui-button variant="text" href="https://baipin.pw"><mdui-icon slot="icon" name="auto_stories"></mdui-icon>Blog</mdui-button>
+            <mdui-button variant="text" href="/#projects"><mdui-icon slot="icon" name="terminal"></mdui-icon>Projects</mdui-button>
+            <mdui-button variant="text" href="/#reading"><mdui-icon slot="icon" name="menu_book"></mdui-icon>Reading</mdui-button>
+            <mdui-button variant="text" href="/#about"><mdui-icon slot="icon" name="account_circle"></mdui-icon>About</mdui-button>
+        </div>
+        <div style="flex-grow: 1"></div>
+        <mdui-button-icon id="theme-toggle" aria-label="Toggle color theme" icon="light_mode"></mdui-button-icon>
+        <mdui-button-icon icon="menu" aria-label="Open navigation menu" class="mobile-menu-btn" onclick="document.getElementById('drawer').open = true"></mdui-button-icon>
+    </header>
+
+
+    <main class="reading-main">
+        <a class="back-link" href="/#reading">← Back to homepage</a>
+        <div class="reading-intro">
+            <p class="eyebrow">THE READING DESK</p>
+            <h1>Reading</h1>
+            <p>Papers on my radar. Exploring how to make large language models remember more and run efficiently.</p>
+        </div>
+        <div class="list-toolbar">
+            <p id="paper-count" role="status">Loading papers…</p>
+            <label class="search-label">Filter papers<input id="paper-search" type="search" placeholder="Search title, author or arXiv ID" autocomplete="off"></label>
+        </div>
+        <div id="paper-list" class="paper-list" aria-label="Reading list"></div>
+        <p id="empty-state" hidden>No matching papers. Try another search.</p>
+        <noscript><p>Enable JavaScript to view the reading list.</p></noscript>
+    </main>
+    <footer>WANG Dingchao · A space for papers and ideas.</footer>
+</body>
+</html>
