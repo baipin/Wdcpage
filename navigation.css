@@ -22,24 +22,11 @@ html[data-theme-resolved] #drawer {
 }
 html[data-theme-resolved="dark"] #drawer::part(panel) { background: rgba(18,18,24,.64); }
 #drawer::part(overlay) { background: rgba(0,0,0,.24); }
-.reading-preview {
-    box-sizing: border-box; max-width: 1280px; margin: 24px auto 48px;
-    width: calc(100% - 60px); padding: 30px 36px; border-radius: 28px;
-    display: flex; align-items: center; justify-content: space-between; gap: 24px;
-    background: rgba(20,20,28,.72); color: white;
-    border: 1px solid rgba(255,255,255,.24); backdrop-filter: blur(20px);
-}
-.reading-preview h2 { font-size: 2rem; margin: 0; }
-.reading-preview p { line-height: 1.7; }
-.reading-eyebrow { font-size: .75rem; letter-spacing: .18em; opacity: .75; }
-.reading-open { flex-shrink: 0; color: white; text-decoration: none; border: 1px solid #ffffff80; border-radius: 40px; padding: 14px 22px; }
-.reading-open:hover { background: #ffffff20; }
 @media(max-width: 1000px) {
     .nav-links-container { display: none; }
     .mobile-menu-btn { display: inline-flex !important; }
 }
 @media(max-width: 600px) {
-    .reading-preview { flex-direction: column; align-items: flex-start; padding: 24px; }
     .nav-logo { font-size: 1.05rem; gap: 8px; }
 }
 
