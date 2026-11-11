@@ -5,6 +5,10 @@
  * arXiv / DOI 地址会尝试获取元数据；Nature 等可识别 DOI 的地址同样支持；受网络或跨域限制时仍显示可用的论文链接。
  */
 window.READING_PAPERS = [
+    'https://arxiv.org/abs/2610.11245',
+    'https://arxiv.org/abs/2609.38166',
+    'https://arxiv.org/abs/2401.18079',
+    'https://arxiv.org/abs/2403.07378',
     'https://arxiv.org/abs/2405.16444',
     'https://arxiv.org/abs/2505.23416',
     'https://arxiv.org/abs/2406.19707',
