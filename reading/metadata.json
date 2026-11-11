@@ -18,5 +18,25 @@
     "title": "Spike sorting with Kilosort4",
     "authors": "Marius Pachitariu, Shashwat Sridhar, Jacob Pennington, Carsen Stringer",
     "date": "2024-4-8"
+  },
+  "2610.11245": {
+    "title": "Read What Matters: Query-Adaptive Quantization for KV Caches",
+    "authors": "Bhandari, Siddharth, Gretta, Lucas, Balasubramanian, Krishna, Kasiviswanathan, Shiva",
+    "date": "2026/10/08"
+  },
+  "2609.38166": {
+    "title": "LeapQuant: Efficient Linear Attention with Accurate Recurrent State Quantization",
+    "authors": "Pan, Yi, Xi, Haocheng, Zhu, Kan, Li, Xingyang, Wu, Yibo, Mishra, Mayank, Zhang, Hongtao, Zheng, William X., Kasikci, Baris, Han, Song, Keutzer, Kurt, Iyer, Rishabh, Stoica, Ion",
+    "date": "2026/09/29"
+  },
+  "2401.18079": {
+    "title": "KVQuant: Towards 10 Million Context Length LLM Inference with KV Cache Quantization",
+    "authors": "Hooper, Coleman, Kim, Sehoon, Mohammadzadeh, Hiva, Mahoney, Michael W., Shao, Yakun Sophia, Keutzer, Kurt, Gholami, Amir",
+    "date": "2024/01/31"
+  },
+  "2403.07378": {
+    "title": "SVD-LLM: Truncation-aware Singular Value Decomposition for Large Language Model Compression",
+    "authors": "Wang, Xin, Zheng, Yu, Wan, Zhongwei, Zhang, Mi",
+    "date": "2024/03/12"
   }
 }

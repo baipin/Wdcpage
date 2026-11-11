@@ -96,6 +96,7 @@
             const heading = element('h2');
             heading.append(link(paper.title || `${paper.source}: ${paper.id}`, paper.url));
             card.append(meta, heading);
+            if (!paper.title) card.append(element('p', 'paper-note', 'Paper details are being updated. You can open the paper below.'));
             if (paper.authors) card.append(element('p', 'authors', Array.isArray(paper.authors) ? paper.authors.join(', ') : paper.authors));
             if (paper.note) card.append(element('p', 'paper-note', paper.note));
             if (Array.isArray(paper.tags) && paper.tags.length) {
@@ -147,7 +148,7 @@
     async function init() {
         let metadata = {};
         try {
-            const response = await fetch('/reading/metadata.json', { signal: AbortSignal.timeout(4000) });
+            const response = await fetch('/reading/metadata.json', { cache: 'no-cache', signal: AbortSignal.timeout(4000) });
             if (response.ok) metadata = await response.json();
         } catch (_) {}
         for (const input of window.READING_PAPERS || []) {
@@ -156,7 +157,7 @@
             papers.push({ ...metadata[paper.key], ...paper });
         }
         render();
-        papers.filter(p => !p.title).forEach(enrich);
+        papers.filter(p => !p.title || !p.authors || !p.date).forEach(enrich);
     }
     search.addEventListener('input', render);
     init();

@@ -18,8 +18,11 @@ window.READING_PAPERS = [
 
 - arXiv、Nature、OpenReview、ACL、CVF 摘要页和 bioRxiv/medRxiv 内容页可自动生成相应 PDF 入口；其他平台只显示论文入口，不猜测 PDF 地址。
 - 可用对象的 `pdf` 字段手动提供 HTTPS PDF 地址，例如 `{ url: 'https://proceedings.mlr.press/v235/example24a.html', title: '论文标题', pdf: 'https://example.org/paper.pdf' }`。
-- arXiv 会尝试从 arXiv API 获取元数据；Nature、DOI 及包含可识别 DOI 的地址会尝试通过 Crossref 获取标题、作者和日期，也可以在对象中手动填写 `doi`。
-- 自动元数据获取可能受跨域或网络限制，失败时仍保留可点击的来源和链接。其他平台可在对象中提供 `title`、`authors`、`date`、`note`、`tags` 等字段，无需依赖自动获取。
+- **自动抓取在 GitHub Actions 中执行**：推送 `reading/papers.js` 到 `main` 后，`Update Reading metadata` 工作流获取论文信息并自动提交 `metadata.json`。也支持手动触发，每天会重试未补全的条目。仓库须启用 Actions，允许工作流写入仓库；若保护规则禁止直接提交 main，工作流会明确报错。
+- 获取完成后重新加载网页即可，页面读取本站 JSON，不依赖读者的浏览器跨域访问 arXiv。标题、作者、日期等手动字段仍优先；请求失败保留已有信息，工作流会报告失败，不会静默删除数据。
+- 抓取支持 arXiv / ACL / PMLR / CVF 等页面的标准 citation 元标签、OpenReview API，以及 Nature / DOI 等的 Crossref 数据。其他平台会尝试标准 citation / Open Graph 标签；出版商反爬或访问权限限制仍可能阻止获取，可手动提供字段。
+- 本地添加链接后运行 `python scripts/update_reading_metadata.py`（需要 Python 3.10+ 和 Node.js），与工作流使用相同逻辑；`--refresh` 可强制刷新已有缓存。
+- 页面仍保留 arXiv / Crossref 即时补全作为备用途径，但自动更新不依赖这条可能被跨域策略拦截的路径。
 - `reading/metadata.json` 缓存已添加论文的信息：arXiv 以不含版本号的 ID 为键，其他平台以规范化后的完整论文 URL 为键。列表对象中的字段优先于缓存。
 - 所有入口仅接受不含用户名密码的 HTTPS 地址；无效条目会跳过。
 
