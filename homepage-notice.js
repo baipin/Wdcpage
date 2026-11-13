@@ -6,9 +6,9 @@
  */
 window.BAIPIN_HOME_NOTICE = {
     enabled: true,
-    dismissible: false,
-    type: 'error',
-    content: 'Due to the Microsoft Outlook outage, the response to the email to i@dcw.hk is delayed, please send email to root@baipin.pw instead to contact with me until the service recovers.'
+    dismissible: true,
+    type: 'warning',
+    content: 'As Microsoft Outlook gradually recoveries, the process of responding to emails sent to i@dcw.hk is also resuming.'
 };
 
 (() => {
