@@ -38,5 +38,10 @@
     "title": "SVD-LLM: Truncation-aware Singular Value Decomposition for Large Language Model Compression",
     "authors": "Wang, Xin, Zheng, Yu, Wan, Zhongwei, Zhang, Mi",
     "date": "2024/03/12"
+  },
+  "2407.02490": {
+    "title": "MInference 1.0: Accelerating Pre-filling for Long-Context LLMs via Dynamic Sparse Attention",
+    "authors": "Jiang, Huiqiang, Li, Yucheng, Zhang, Chengruidong, Wu, Qianhui, Luo, Xufang, Ahn, Surin, Han, Zhenhua, Abdi, Amir H., Li, Dongsheng, Lin, Chin-Yew, Yang, Yuqing, Qiu, Lili",
+    "date": "2024/07/02"
   }
 }
