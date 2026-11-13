@@ -7,8 +7,8 @@
 window.BAIPIN_HOME_NOTICE = {
     enabled: true,
     dismissible: true,
-    type: 'warning',
-    content: 'As Microsoft Outlook gradually recoveries, the process of responding to emails sent to i@dcw.hk is also resuming.'
+    type: 'info',
+    content: 'As Microsoft Outlook gradually recoveries, the response for emails sent to i@dcw.hk is now available.'
 };
 
 (() => {
