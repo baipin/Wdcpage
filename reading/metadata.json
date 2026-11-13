@@ -43,5 +43,10 @@
     "title": "MInference 1.0: Accelerating Pre-filling for Long-Context LLMs via Dynamic Sparse Attention",
     "authors": "Jiang, Huiqiang, Li, Yucheng, Zhang, Chengruidong, Wu, Qianhui, Luo, Xufang, Ahn, Surin, Han, Zhenhua, Abdi, Amir H., Li, Dongsheng, Lin, Chin-Yew, Yang, Yuqing, Qiu, Lili",
     "date": "2024/07/02"
+  },
+  "2606.09441": {
+    "title": "SIFT: Selective-Index For Fast Compute of RAG Prefill by Exploiting Attention Invariance",
+    "authors": "Sanovar, Rya, Bharadwaj, Srikant, Taneja, Hritvik, Qureshi, Moinuddin",
+    "date": "2026/06/08"
   }
 }
