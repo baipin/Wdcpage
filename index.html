@@ -1093,6 +1093,8 @@
         }
     </style>
     <link rel="stylesheet" href="/navigation.css">
+    <link rel="stylesheet" href="/homepage-notice.css">
+    <script defer src="/homepage-notice.js"></script>
 </head>
 <body class="mdui-theme-auto">
 
@@ -1125,6 +1127,11 @@
         <mdui-button-icon id="theme-toggle" aria-label="Toggle color theme" icon="light_mode"></mdui-button-icon>
         <mdui-button-icon icon="menu" aria-label="Open navigation menu" class="mobile-menu-btn" onclick="document.getElementById('drawer').open = true"></mdui-button-icon>
     </header>
+
+    <aside id="homepage-notice" class="homepage-notice" hidden>
+        <span class="material-icons" aria-hidden="true"></span>
+        <span class="homepage-notice-content"></span>
+    </aside>
 
     <!-- Hero Section with landscape photo info -->
     <section class="hero-section" id="home">

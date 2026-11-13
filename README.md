@@ -31,3 +31,7 @@ window.READING_PAPERS = [
 ## 本地图标
 
 首页和 Reading 共用 `assets/material-icons.css` 及本地 `assets/fonts/MaterialIcons-Regular.ttf`，不再请求 Google Fonts。字体为 Google Material Icons，采用 Apache-2.0 许可，许可全文见 `assets/fonts/LICENSE.txt`。
+
+## 首页顶部通知
+
+编辑 `homepage-notice.js` 顶部的 `BAIPIN_HOME_NOTICE`：`enabled` 控制是否显示，`type` 可选 `error`（红色）、`warning`（黄色）或 `info`（蓝色），`content` 为纯文本内容。空内容时也会隐藏。横条使用本地 Material Icons，位于首页导航下方，长文本会自动换行；Reading 页面不显示。
