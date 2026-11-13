@@ -34,4 +34,4 @@ window.READING_PAPERS = [
 
 ## 首页顶部通知
 
-编辑 `homepage-notice.js` 顶部的 `BAIPIN_HOME_NOTICE`：`enabled` 控制是否显示，`type` 可选 `error`（红色）、`warning`（黄色）或 `info`（蓝色），`content` 为纯文本内容。空内容时也会隐藏。横条使用本地 Material Icons，位于首页导航下方，长文本会自动换行；Reading 页面不显示。
+编辑 `homepage-notice.js` 顶部的 `BAIPIN_HOME_NOTICE`：`enabled` 控制是否显示，`dismissible` 控制用户能否关闭（默认 `false`，设为 `true` 后显示关闭按钮，关闭后刷新页面会重新显示），`type` 可选 `error`（红色）、`warning`（黄色）或 `info`（蓝色），`content` 为纯文本内容。空内容时也会隐藏。横条使用本地 Material Icons，位于首页导航下方，长文本会自动换行；Reading 页面不显示。

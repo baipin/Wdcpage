@@ -1,10 +1,12 @@
-/* 首页顶部通知：只需编辑下面三个字段。
+/* 首页顶部通知：只需编辑下面的字段。
  * enabled: true 显示 / false 隐藏
+ * dismissible: true 允许用户关闭 / false 不允许（刷新页面后重新显示）
  * type: 'error' 红色警告 / 'warning' 黄色提示 / 'info' 蓝色信息
  * content: 通知纯文本（不解析 HTML）
  */
 window.BAIPIN_HOME_NOTICE = {
     enabled: true,
+    dismissible: false,
     type: 'error',
     content: 'Due to the Microsoft Outlook outage, the response to the email to i@dcw.hk is delayed, please send email to root@baipin.pw instead to contact with me until the service recovers.'
 };
@@ -19,5 +21,22 @@ window.BAIPIN_HOME_NOTICE = {
     banner.setAttribute('role', type === 'error' ? 'alert' : 'status');
     banner.querySelector('.material-icons').textContent = icons[type];
     banner.querySelector('.homepage-notice-content').textContent = config.content;
+    if (config.dismissible === true) {
+        const close = document.createElement('button');
+        close.type = 'button';
+        close.className = 'homepage-notice-close';
+        close.setAttribute('aria-label', 'Dismiss notice');
+        const icon = document.createElement('span');
+        icon.className = 'material-icons';
+        icon.setAttribute('aria-hidden', 'true');
+        icon.textContent = 'close';
+        close.append(icon);
+        close.addEventListener('click', () => {
+            banner.hidden = true;
+            // Move focus out of the hidden notice after keyboard dismissal.
+            document.querySelector('.nav-logo')?.focus({ preventScroll: true });
+        });
+        banner.append(close);
+    }
     banner.hidden = false;
 })();
