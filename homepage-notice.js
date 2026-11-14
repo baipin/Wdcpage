@@ -5,7 +5,7 @@
  * content: 通知纯文本（不解析 HTML）
  */
 window.BAIPIN_HOME_NOTICE = {
-    enabled: true,
+    enabled: false,
     dismissible: true,
     type: 'info',
     content: 'As Microsoft Outlook gradually recoveries, my response for emails sent to i@dcw.hk is now available.'
