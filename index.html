@@ -26,8 +26,6 @@
     <link href="/assets/material-icons.css" rel="stylesheet">
     <script src="https://unpkg.com/mdui@2.0.3/mdui.global.js"></script>
     
-    <!-- Marked.js for Markdown -->
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-328FTWB8G4"></script>
@@ -1175,13 +1173,51 @@
                 <mdui-button variant="text" href="/#about">About Me</mdui-button>
             </div>
 
-            <!-- Markdown inclusion from about.md, no special quote style -->
+            <!-- About HTML is generated from pages/about.md by GitHub Actions. -->
             <div id="about" class="about-direct-content">
                 <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px; margin-top: 12px;">
                     <mdui-icon name="info" style="opacity: 0.7;"></mdui-icon>
                     <strong style="font-size: 1.2rem;">About</strong>
                 </div>
-                <div id="about-content" style="min-height: 90px;"><mdui-circular-progress></mdui-circular-progress> Loading reflections...</div>
+                <div id="about-content" style="min-height: 90px;">
+<!-- ABOUT:START -->
+<p>Hello! Welcome to Wang Dingchao's personal homepage. I am now an undergraduate student studying Data Science. I am doing some research on Artificial Intelligence and Large Language Model at a basic stage currently. I also run a personal blog and some small services, such as online web radio and navigation homepage. You can try  them through project page on this website. Some Cities: Skylines modules are also published by me, and you can find them by searching <code>baipin</code> on Paradox Mods.</p>
+<p>When I was in primary school, in 2015, I already started exploring the Internet and studied Visual Basic 6.0 as my first coding language. And I also tried visual hosting and website making at that time. Just for fun at the beginning, I installed and ran many web programs such as Discuz!, Z-blog, SWAPIDC, WHMCS but accumulated rich experience at the end. To this day, I still use WordPress as an engine in one of my websites.</p>
+<p>Six-year secondary education is very busy for me, but I still keep creating projects and maintaining them. During this period, the blog articles were kept updated at the frequenct of about one posts per month. A project called &quot;Baipin Internet TV&quot; was also rebuilt at these time.</p>
+<p>Nowadays, I still maintain some projects as shown below. Welcome to these projects and have a try. If you would like to say anything to me, feel free to contact me through the methods listed on this website. I promise I will response to each email within one week.</p>
+<p>Three domains are owned by me now. Here are some interesting stories about them.</p>
+<ul>
+<li>baipin.pw: The oldest domain owned by me, which was created when I was in the last grade of my primary school.</li>
+<li>baipon.com: The first com domain which was created in 2023. The difference in English spelling (baipon rather than baipin) is that the later one with .com suffix is owned by others.</li>
+<li>wangdingchao.com: The prefix is my name, and that's exactly the domain of this website. As planned, this website is used for scholar demonstration in the future.</li>
+<li>dcw.hk: The domain also for this site. It is also used for my public email.</li>
+</ul>
+<h3>🔥 News</h3>
+<ul>
+<li><em>2026.11.10:</em>  🎉🎉 Bought dcw.hk domain.</li>
+<li><em>2026.4.30:</em>  🎉🎉 Bought Wangdingchao.com domain.</li>
+</ul>
+<h3>📝 Publications</h3>
+<p>Empty here...</p>
+<h3>📖 Educations</h3>
+<ul>
+<li><em>2023.9 - 2027.6</em>, Undergaduate at <a href="https://cityu.edu.hk">City University of Hong Kong</a></li>
+</ul>
+<h3>💻 Internships</h3>
+<ul>
+<li><em>2026.9 - 2026.12</em>, Proactive Intelligence, Hong Kong.</li>
+<li><em>2026.5 - 2026.10</em>, Research Assistant, City University of Hong Kong, Hong Kong.</li>
+<li><em>2025.9 - 2025.12</em>, XOOER, Hong Kong.</li>
+</ul>
+<h3>🌐 Languages</h3>
+<ul>
+<li><strong>Chinese(Mandarin):</strong> Native</li>
+<li><strong>Chinese(Cantonese):</strong> Intermediate</li>
+<li><strong>English:</strong> Fluent</li>
+</ul>
+<p><img src="https://github.com/baipin/baipin/raw/main/github-metrics.svg" alt="github-metrics.svg" /></p>
+<!-- ABOUT:END -->
+                </div>
             </div>
 
             <mdui-divider style="margin: 36px 0 24px;"></mdui-divider>
@@ -1314,27 +1350,6 @@
         bgTest.onerror = () => {
             document.body.classList.add('no-bg');
         };
-        
-        // ========== LOAD ABOUT.MD (Direct inclusion, no special quote styling) ==========
-        async function loadAboutMarkdown() {
-            const aboutContainer = document.getElementById('about-content');
-            if (!aboutContainer) return;
-            try {
-                const response = await fetch('pages/about.md');
-                if (!response.ok) throw new Error(`HTTP ${response.status}`);
-                const markdownText = await response.text();
-                const htmlContent = marked.parse(markdownText);
-                aboutContainer.innerHTML = htmlContent;
-            } catch (err) {
-                console.warn('about.md not found, using elegant fallback');
-                aboutContainer.innerHTML = `
-                    <div style="opacity:0.85; margin-top: 6px;">
-                        ✦ This space is fed by <strong>about.md</strong> — create a markdown file in the same directory to share bio, current focuses, or recent projects.<br>
-                        <span style="display:inline-block; margin-top: 12px;">📌 Meanwhile: building open-source tools, hiking the Alps, exploring analog photography.</span>
-                    </div>`;
-            }
-        }
-        loadAboutMarkdown();
         
         // ========== FETCH RSS FEED ==========
         async function fetchRSS() {
