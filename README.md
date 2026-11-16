@@ -43,3 +43,7 @@ window.READING_PAPERS = [
 本地同步：`python -m pip install -r scripts/requirements.txt`，然后运行 `python scripts/render_about.py`。可用 `python scripts/render_about.py --check` 检查是否同步。请勿手动编辑标记之间的生成内容。Markdown 支持表格、列表、链接和图片；仅维护者提供的可信内容应写入 Markdown（允许内嵌 HTML）。
 
 仓库须允许 GitHub Actions 写入 main。使用自动部署服务时，需监听生成 HTML 的提交；GitHub Pages 的默认分支构建不会被 Actions 的 GITHUB_TOKEN 提交再次触发，若使用该部署方式，应另配置在渲染后直接执行的 Pages 部署工作流。
+
+## Vercel 部署
+
+`vercel.json` 明确指定无框架、无需安装和构建、直接发布仓库根目录的静态文件。`.vercelignore` 排除仅供 GitHub Actions 使用的 Python 脚本和工作流，避免 Vercel 将项目识别成 Python 服务。About 的 HTML 已由 GitHub Actions 生成，Vercel 无需 Python 入口文件。
