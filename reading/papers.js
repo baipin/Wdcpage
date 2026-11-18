@@ -6,6 +6,10 @@
  * 本地可运行 python scripts/update_reading_metadata.py；失败条目保留已有缓存，自动每日重试。
  */
 window.READING_PAPERS = [
+    'https://arxiv.org/abs/2508.16703',
+    'https://arxiv.org/abs/2611.00408',
+    'https://arxiv.org/abs/2407.05858',
+    'https://arxiv.org/abs/2501.14794',
     'https://arxiv.org/abs/2606.09441',
     'https://arxiv.org/abs/2407.02490',
     'https://arxiv.org/abs/2610.11245',
