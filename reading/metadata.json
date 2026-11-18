@@ -48,5 +48,25 @@
     "title": "SIFT: Selective-Index For Fast Compute of RAG Prefill by Exploiting Attention Invariance",
     "authors": "Sanovar, Rya, Bharadwaj, Srikant, Taneja, Hritvik, Qureshi, Moinuddin",
     "date": "2026/06/08"
+  },
+  "2508.16703": {
+    "title": "ShadowNPU: System and Algorithm Co-design for NPU-Centric On-Device LLM Inference",
+    "authors": "Yin, Wangsong, Xu, Daliang, Xu, Mengwei, Huang, Gang, Liu, Xuanzhe",
+    "date": "2025/08/22"
+  },
+  "2611.00408": {
+    "title": "TileWeave: Heterogeneous Tiling for Sparse Prefill on Mobile SoCs",
+    "authors": "Ni, Wentao, Cai, Hong, Lee, Mingu, Yu, Chihao, Yu, Zhongming, Zhang, Hejia, Zhang, Kangqi, Porikli, Fatih, Liu, Zhijian, Zhao, Jishen",
+    "date": "2026/10/30"
+  },
+  "2407.05858": {
+    "title": "Fast On-device LLM Inference with NPUs",
+    "authors": "Xu, Daliang, Zhang, Hao, Yang, Liming, Liu, Ruiqi, Huang, Gang, Xu, Mengwei, Liu, Xuanzhe",
+    "date": "2024/07/08"
+  },
+  "2501.14794": {
+    "title": "Characterizing Mobile SoC for Accelerating Heterogeneous LLM Inference",
+    "authors": "Chen, Le, Feng, Dahu, Feng, Erhu, Wang, Yingrui, Zhao, Rong, Xia, Yubin, Xu, Pinjie, Chen, Haibo",
+    "date": "2025/01/11"
   }
 }
